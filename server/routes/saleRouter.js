@@ -1,17 +1,14 @@
-const Router = require('express')
+const express = require('express');
+const router = express.Router();
 
-const router = new Router()
+const saleController = require('../controllers/saleController');
+const saleMiddleware = require('../middleware/saleMiddleware');
 
-const saleController = require('../controllers/saleController')
+router
+    .get('/:id', saleMiddleware.getOne, saleController.getOne)
+    .get('/', saleController.getAll)
+    .post('/', saleMiddleware.create, saleController.create)
+    .delete('/:id', saleMiddleware.deleteOne, saleController.deleteOne)
+    .put('/', saleMiddleware.update, saleController.update)
 
-
-router.get('/:id', saleController.getOne)
-router.get('/', saleController.getAll)
-
-router.post('/', saleController.create)
-
-router.delete('/:id', saleController.deleteOne)
-
-router.put('/', saleController.update)
-
-module.exports = router 
+module.exports = router;

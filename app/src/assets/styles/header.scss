@@ -31,7 +31,7 @@ header {
 
         a {
             @include font-size(20, normal, 1.2);
-            
+
             &:hover {
                 color: $secondary;
             }
@@ -42,7 +42,7 @@ header {
             padding: 0.5rem;
             color: black;
             @include font-size(20, normal, 1.2);
-            background: rgba($color: #FFF, $alpha: 1);
+            background: rgba($color: #fff, $alpha: 1);
             cursor: pointer;
             transition: all 0.5s ease;
             text-transform: uppercase;

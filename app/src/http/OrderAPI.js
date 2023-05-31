@@ -17,14 +17,14 @@ export const OrderAPI = {
         return DefaultAPIInstance.post(url, { ...data })
     },
 
-    deleteOrder(id) {
-        const url = process.env.VUE_APP_ORDER_API_URL + id
-        return DefaultAPIInstance.delete(url)
-    },
-
     updateOrder(id, userId, paymentId, saleId, orderStatusId, products) {
         const url = process.env.VUE_APP_ORDER_API_URL
         const data = { id, userId, paymentId, saleId, orderStatusId, products }
         return DefaultAPIInstance.put(url, { ...data })
+    },
+
+    deleteOrder(id) {
+        const url = `${process.env.VUE_APP_ORDER_API_URL}${id}`
+        return DefaultAPIInstance.delete(url)
     }
 }

@@ -1,17 +1,15 @@
-const Router = require('express')
+const express = require('express');
+const router = express.Router();
 
-const router = new Router()
+const orderStatusController = require('../controllers/orderStatusController');
+const orderStatusMiddleware = require('../middleware/orderStatusMiddleware');
 
-const orderStatusController = require('../controllers/orderStatusController')
 
+router
+    .get('/:id', orderStatusMiddleware.getOne, orderStatusController.getOne)
+    .get('/', orderStatusController.getAll)
+    .post('/',  orderStatusMiddleware.create, orderStatusController.create)
+    .delete('/:id', orderStatusMiddleware.deleteOne, orderStatusController.deleteOne)
+    .put('/', orderStatusMiddleware.update,  orderStatusController.update)
 
-router.get('/:id', orderStatusController.getOne)
-router.get('/', orderStatusController.getAll)
-
-router.post('/', orderStatusController.create)
-
-router.delete('/:id', orderStatusController.deleteOne)
-
-router.put('/', orderStatusController.update)
-
-module.exports = router 
+module.exports = router;

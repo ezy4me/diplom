@@ -1,12 +1,15 @@
 <template>
   <header>
     <v-modal :open="isOpen" @close="isOpen = !isOpen">
-      <auth-form @isOpen="() => isOpen = !isOpen"></auth-form>
+      <auth-form @isOpen="() => (isOpen = !isOpen)"></auth-form>
     </v-modal>
     <div class="header">
       <div class="header__navbar">
         <div class="logo">
-          <img class="logo__img" :src="require('../../assets/images/fabric.png')" alt="logo" />
+          <img
+            class="logo__img"
+            :src="require('../../assets/images/fabric.png')"
+            alt="logo" />
           <h3 class="logo__title">Fabric</h3>
         </div>
         <nav class="navbar">
@@ -19,13 +22,18 @@
           </ul>
         </nav>
         <div class="header__actions">
-          <button class="request-btn" @click="dialog = true">Заказать звонок</button>
+          <button class="request-btn" @click="dialog = true">
+            Заказать звонок
+          </button>
           <v-dialog v-model="dialog" width="600">
-            <request-form @closeDialog="closeDialog">
-            </request-form>
+            <request-form @closeDialog="closeDialog"> </request-form>
           </v-dialog>
-          <a v-show="!role" @click="isOpen = true" class="link" href="#">Войти</a>
-          <router-link v-if="role == 'USER'" to="/account" >Личный кабинет</router-link>
+          <a v-show="!role" @click="isOpen = true" class="link" href="#"
+            >Войти</a
+          >
+          <router-link v-if="role == 'USER'" to="/account"
+            >Личный кабинет</router-link
+          >
           <!-- <router-link  v-else-if="role == 'ADMIN'" to="/admin">ROOT</router-link> -->
         </div>
       </div>
@@ -38,16 +46,16 @@ import { computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import VModal from "../common/VModal.vue";
 import AuthForm from "./AuthForm.vue";
-import RequestForm from './RequestForm.vue';
-export default{
+import RequestForm from "./RequestForm.vue";
+export default {
   setup() {
     let isActive = ref(false);
     const isOpen = ref(false);
 
-    const store = useStore()
+    const store = useStore();
     const dialog = ref(false);
 
-    const role = computed(() => store.state.auth.credentials.userRole)
+    const role = computed(() => store.state.auth.credentials.userRole);
 
     const tabs = [
       { id: 1, name: "Главная", path: "/" },
@@ -59,10 +67,8 @@ export default{
     ];
 
     onMounted(() => {
-      store.dispatch('request/GET_REQUEST_TYPES_FROM_API').then(() => {
-        console.log(store.state.request.requestTypes);
-      })
-    })
+      store.dispatch("request/GET_REQUEST_TYPES_FROM_API");
+    });
 
     const onNavbarTab = () => {
       isActive.value = !isActive.value;
@@ -70,7 +76,7 @@ export default{
 
     const closeDialog = () => {
       dialog.value = !dialog.value;
-    }
+    };
 
     return {
       tabs,
@@ -79,7 +85,7 @@ export default{
       isOpen,
       role,
       dialog,
-      closeDialog
+      closeDialog,
     };
   },
   components: {

@@ -1,17 +1,14 @@
-const Router = require('express')
+const express = require('express');
+const router = express.Router();
 
-const router = new Router()
+const paymentController = require('../controllers/paymentController');
+const paymentMiddleware = require('../middleware/paymentMiddleware');
 
-const paymentController = require('../controllers/paymentController')
+router
+    .get('/:id', paymentMiddleware.getOne, paymentController.getOne)
+    .get('/', paymentController.getAll)
+    .post('/', paymentMiddleware.create, paymentController.create)
+    .delete('/:id', paymentMiddleware.deleteOne, paymentController.deleteOne)
+    .put('/', paymentMiddleware.update, paymentController.update)
 
-
-router.get('/:id', paymentController.getOne)
-router.get('/', paymentController.getAll)
-
-router.post('/', paymentController.create)
-
-router.delete('/:id', paymentController.deleteOne)
-
-router.put('/', paymentController.update)
-
-module.exports = router 
+module.exports = router;

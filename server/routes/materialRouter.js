@@ -1,17 +1,15 @@
-const Router = require('express')
+const express = require('express');
+const router = express.Router();
 
-const router = new Router()
+const materialController = require('../controllers/materialController');
+const materialMiddleware = require('../middleware/materialMiddleware');
+const { getOne } = require('../controllers/userController');
 
-const materialController = require('../controllers/materialController')
+router
+    .get('/:id', materialMiddleware.getOne, materialController.getOne)
+    .get('/', materialController.getAll)
+    .post('/', materialMiddleware.create, materialController.create)
+    .delete('/:id', materialMiddleware.deleteOne, materialController.deleteOne)
+    .put('/', materialMiddleware.update, materialController.update)
 
-
-router.get('/:id', materialController.getOne)
-router.get('/', materialController.getAll)
-
-router.post('/', materialController.create)
-
-router.delete('/:id', materialController.deleteOne)
-
-router.put('/', materialController.update)
-
-module.exports = router 
+module.exports = router;

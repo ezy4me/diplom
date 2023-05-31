@@ -38,7 +38,7 @@ export const MaterialAPI = {
     },
 
     deleteMaterial(id) {
-        const url = process.env.VUE_APP_MATERIAL_API_URL + id
+        const url = `${process.env.VUE_APP_MATERIAL_API_URL}${id}`
         return DefaultAPIInstance.delete(url)
     }
 }

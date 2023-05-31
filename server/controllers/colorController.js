@@ -6,7 +6,7 @@ class ColorController {
     try {
       const { name, hex } = req.body;
       const color = await Color.create({ name, hex });
-      return res.json(req.body.data);
+      return res.json(color);
     } catch (e) {
       return next(ApiError.InternetServerError(e.message));
     }

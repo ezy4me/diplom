@@ -54,7 +54,7 @@ export const ProductAPI = {
     },
 
     deleteProduct(id) {
-        const url = process.env.VUE_APP_PRODUCT_API_URL + id
+        const url = `${process.env.VUE_APP_PRODUCT_API_URL}${id}`
         return DefaultAPIInstance.delete(url)
     },
 }

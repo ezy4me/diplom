@@ -1,18 +1,14 @@
-const Router = require('express')
+const express = require('express');
+const router = express.Router();
 
-const router = new Router()
+const categoryController = require('../controllers/categoryController');
+const categoryMiddleware = require('../middleware/categoryMiddleware')
 
-const categoryController = require('../controllers/categoryController')
+router
+    .get('/:id', categoryMiddleware.getOne, categoryController.getOne)
+    .get('/', categoryController.getAll)
+    .post('/', categoryMiddleware.create, categoryController.create)
+    .delete('/:id', categoryMiddleware.deleteOne, categoryController.deleteOne)
+    .put('/', categoryMiddleware.update, categoryController.update);
 
-
-router.get('/:id', categoryController.getOne)
-router.get('/', categoryController.getAll)
-
-router.post('/', categoryController.create)
-
-router.delete('/:id', categoryController.deleteOne)
-
-router.put('/', categoryController.update)
-
-
-module.exports = router 
+module.exports = router;

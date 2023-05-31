@@ -1,17 +1,14 @@
-const Router = require('express')
+const express = require('express');
+const router = express.Router();
 
-const router = new Router()
+const sizeController = require('../controllers/sizeController');
+const sizeMiddleware = require('../middleware/sizeMiddleware');
 
-const sizeController = require('../controllers/sizeController')
+router
+    .get('/:id', sizeMiddleware.getOne, sizeController.getOne)
+    .get('/', sizeController.getAll)
+    .post('/', sizeMiddleware.create, sizeController.create)
+    .delete('/:id', sizeMiddleware.deleteOne, sizeController.deleteOne)
+    .put('/', sizeMiddleware.update, sizeController.update)
 
-
-router.get('/:id', sizeController.getOne)
-router.get('/', sizeController.getAll)
-
-router.post('/', sizeController.create)
-
-router.delete('/:id', sizeController.deleteOne)
-
-router.put('/', sizeController.update)
-
-module.exports = router 
+module.exports = router;

@@ -1,8 +1,4 @@
-@import './variables.scss';
-
-// * {
-//     font-family: 'Oswald', sans-serif;
-// }
+@import "./variables.scss";
 
 body {
     min-height: 100vh;
@@ -17,8 +13,7 @@ a {
     text-decoration: none;
     color: black;
     @include font-size(16, normal, 1.2);
-
-}   
+}
 
 a.router-link-exact-active {
     color: $secondary;
@@ -35,7 +30,7 @@ a.router-link-exact-active {
     text-align: center;
 
     &::after {
-        content: "";    
+        content: "";
         position: absolute;
         width: 20%;
         min-width: 60px;
@@ -44,16 +39,15 @@ a.router-link-exact-active {
         background: $primary;
         bottom: -1rem;
         left: 50%;
-        transform: translateX(-50%)
+        transform: translateX(-50%);
     }
 }
-
 
 .desc {
     @include font-size(22, normal, 1.2);
 }
 
-.text{
+.text {
     @include font-size(18, normal, 1.2);
 }
 
@@ -68,7 +62,7 @@ a.router-link-exact-active {
     cursor: pointer;
     transition: all 0.5s ease;
 
-    &:hover{
+    &:hover {
         transform: scale(1.02);
         transition: all 0.5s ease;
     }

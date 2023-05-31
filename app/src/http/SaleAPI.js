@@ -19,7 +19,7 @@ export const SaleAPI = {
     },
 
     deleteSale(id) {
-        const url = process.env.VUE_APP_SALE_API_URL + id
+        const url = `${process.env.VUE_APP_SALE_API_URL}${id}`
         return DefaultAPIInstance.delete(url)
     },
 

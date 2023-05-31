@@ -1,7 +1,7 @@
 $primary: #0099ff;
 $secondary: #3366ff;
 $hover-color: #99ccff;
-$light-secondary: #BBDEFB;
+$light-secondary: #bbdefb;
 $border-color: #ececec;
 $dark: #292929;
 
@@ -18,7 +18,7 @@ $dark: #292929;
     border: $width $style $color;
 }
 
-@mixin border-3d{
+@mixin border-3d {
     border-top: 4px solid #ececec;
     border-left: 4px solid #ececec;
     border-bottom: 4px solid #a8a8a8;
@@ -83,7 +83,7 @@ $dark: #292929;
         letter-spacing: #{$letter-spacing / $font-size}em;
     }
 
-     font-family: 'Oswald', sans-serif;
+    font-family: "Oswald", sans-serif;
 }
 
 @mixin cover-background($image) {

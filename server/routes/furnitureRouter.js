@@ -1,17 +1,14 @@
-const Router = require('express')
+const express = require('express');
+const router = express.Router();
 
-const router = new Router()
+const furnitureController = require('../controllers/furnitureController');
+const furnitureMiddleware = require('../middleware/furnitureMiddleware');
 
-const furnitureController = require('../controllers/furnitureController')
+router
+    .get('/:id', furnitureMiddleware.getOne, furnitureController.getOne)
+    .get('/', furnitureController.getAll)
+    .post('/',furnitureMiddleware.create,  furnitureController.create)
+    .delete('/:id', furnitureMiddleware.deleteOne, furnitureController.deleteOne)
+    .put('/', furnitureMiddleware.update, furnitureController.update)
 
-
-router.get('/:id', furnitureController.getOne)
-router.get('/', furnitureController.getAll)
-
-router.post('/', furnitureController.create)
-
-router.delete('/:id', furnitureController.deleteOne)
-
-router.put('/', furnitureController.update)
-
-module.exports = router 
+module.exports = router;

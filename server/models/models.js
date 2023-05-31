@@ -1,4 +1,4 @@
-const sequelize = require('../db')
+const sequelize = require('./db')
 const { DataTypes } = require('sequelize')
 
 const User = sequelize.define('user', {
@@ -20,14 +20,14 @@ const Request = sequelize.define('request',
     })
 
 const RequestStatus = sequelize.define('request_status', {
-        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-        name: { type: DataTypes.STRING, unique: true, allowNull: false },
-    })
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
+})
 
 const RequestType = sequelize.define('request_type', {
-        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-        name: { type: DataTypes.STRING, unique: true, allowNull: false },
-    })
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
+})
 
 const Product = sequelize.define('product',
     {
@@ -123,18 +123,18 @@ const ProductMaterial = sequelize.define('product_material', {
 /// Product relations ///
 
 Category.hasMany(Product)
-Product.belongsTo(Category, {as: 'category'})
+Product.belongsTo(Category, { as: 'category' })
 
 Cut.hasMany(Product)
-Product.belongsTo(Cut, {as: 'cut'})
+Product.belongsTo(Cut, { as: 'cut' })
 
 Size.hasMany(Product)
-Product.belongsTo(Size, {as: 'size'})
+Product.belongsTo(Size, { as: 'size' })
 
-Product.hasMany(ProductFurniture, {as: 'furnitures'})
+Product.hasMany(ProductFurniture, { as: 'furnitures' })
 ProductFurniture.belongsTo(Product)
 
-Product.hasMany(ProductMaterial, {as: 'materials'})
+Product.hasMany(ProductMaterial, { as: 'materials' })
 ProductMaterial.belongsTo(Product)
 
 /// Furniture and Material relations ///
@@ -142,7 +142,7 @@ ProductMaterial.belongsTo(Product)
 Color.hasMany(Furniture)
 Furniture.belongsTo(Color, { as: 'color' })
 
-Color.hasMany(Material, )
+Color.hasMany(Material,)
 Material.belongsTo(Color, { as: 'color' })
 
 Furniture.hasMany(ProductFurniture)
@@ -154,10 +154,10 @@ ProductMaterial.belongsTo(Material)
 /// OrderProduct relations
 
 Order.hasMany(OrderProduct)
-OrderProduct.belongsTo(Order, {as : 'order'})
+OrderProduct.belongsTo(Order, { as: 'order' })
 
 Product.hasMany(OrderProduct)
-OrderProduct.belongsTo(Product, {as: 'product'})
+OrderProduct.belongsTo(Product, { as: 'product' })
 
 /// Order relattions ///
 
@@ -176,10 +176,10 @@ Order.belongsTo(Sale)
 /// Request relattions ///
 
 RequestStatus.hasMany(Request)
-Request.belongsTo(RequestStatus, {as: 'requestStatus'})
+Request.belongsTo(RequestStatus, { as: 'requestStatus' })
 
 RequestType.hasMany(Request)
-Request.belongsTo(RequestType, {as: 'requestType'})
+Request.belongsTo(RequestType, { as: 'requestType' })
 
 /// OrderService relations ///
 
@@ -191,15 +191,12 @@ OrderService.belongsTo(Service)
 
 module.exports = {
     User,
-
     Request,
     RequestStatus,
     RequestType,
-
     Product,
     ProductMaterial,
     ProductFurniture,
-    
     Category,
     Cut,
     Size,

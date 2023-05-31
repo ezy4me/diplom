@@ -1,17 +1,14 @@
-const Router = require('express')
+const express = require('express');
+const router = express.Router();
 
-const router = new Router()
+const colorController = require('../controllers/colorController');
+const colorMiddleware = require('../middleware/colorMiddleware')
 
-const colorController = require('../controllers/colorController')
+router
+    .get('/:id', colorMiddleware.getOne, colorController.getOne)
+    .get('/', colorController.getAll)
+    .post('/', colorMiddleware.create ,colorController.create)
+    .delete('/:id', colorMiddleware.deleteOne ,colorController.deleteOne)
+    .put('/', colorMiddleware.update ,colorController.update)
 
-
-router.get('/:id', colorController.getOne)
-router.get('/', colorController.getAll)
-
-router.post('/', colorController.create)
-
-router.delete('/:id', colorController.deleteOne)
-
-router.put('/', colorController.update)
-
-module.exports = router 
+module.exports = router;

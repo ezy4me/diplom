@@ -20,4 +20,3 @@ createApp(App)
   .use(VueSweetalert2)
   .mount('#app')
 
-  

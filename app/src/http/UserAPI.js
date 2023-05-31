@@ -12,7 +12,7 @@ export const UserAPI = {
     },
 
     createUser(email, password, fio, phone) {
-        const url = process.env.VUE_APP_USER_API_URL + "registration"
+        const url = `${process.env.VUE_APP_USER_API_URL}registration`
         const data = { email, password, fio, phone }
         return DefaultAPIInstance.post(url, { ...data })
     },
@@ -27,7 +27,7 @@ export const UserAPI = {
     },
 
     deleteUser(id) {
-        const url = process.env.VUE_APP_USER_API_URL + id
+        const url = `${process.env.VUE_APP_USER_API_URL}${id}`
         return DefaultAPIInstance.delete(url)
     }
 }

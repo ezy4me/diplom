@@ -37,19 +37,20 @@ class OrderController {
 
   async getAll(req, res, next) {
     try {
+      const orders = await Order.findAndCountAll({
+        include: [
+          { model: User, as: "user" },
+          { model: OrderStatus, as: "order_status" },
+          { model: Sale, as: "sale" },
+          { model: Payment, as: "payment" },
+        ],
+      });
+
+      return res.json(orders);
     } catch (e) {
       return next(ApiError.InternetServerError(e.message));
     }
-    const orders = await Order.findAndCountAll({
-      include: [
-        { model: User, as: "user" },
-        { model: OrderStatus, as: "order_status" },
-        { model: Sale, as: "sale" },
-        { model: Payment, as: "payment" },
-      ],
-    });
 
-    return res.json(orders);
   }
 
   async getOne(req, res, next) {

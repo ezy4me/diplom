@@ -19,7 +19,7 @@ export const OrderStatusAPI = {
     },
 
     deleteOrderStatus(id) {
-        const url = process.env.VUE_APP_ORDERSTATUS_API_URL + id
+        const url = `${process.env.VUE_APP_ORDERSTATUS_API_URL}${id}`
         return DefaultAPIInstance.delete(url)
     },
 

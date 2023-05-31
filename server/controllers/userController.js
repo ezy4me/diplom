@@ -136,9 +136,6 @@ class UserController {
             include: [{ model: Furniture }],
           });
 
-          // let productMaterialColor = await Color.findOne({
-          //   where: { id: productMaterial.colorId },
-          // });
           let productSize = await Size.findOne({
             where: { id: orderProducts[j].product.sizeId },
           });
@@ -166,7 +163,6 @@ class UserController {
               price: orderProducts[j].product.price,
               description: orderProducts[j].product.description,
               material: productMaterial.map((m) => m.material),
-              // materialColor: productMaterialColor.hex,
               furniture: productFurniture.map((f) => f.furniture),
               size: productSize.name,
               category: productCategory.name,

@@ -19,7 +19,7 @@ export const PaymentAPI = {
     },
 
     deletePayment(id) {
-        const url = process.env.VUE_APP_PAYMENT_API_URL + id
+        const url = `${process.env.VUE_APP_PAYMENT_API_URL}${id}`
         return DefaultAPIInstance.delete(url)
     },
 

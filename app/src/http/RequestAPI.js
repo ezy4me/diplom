@@ -7,7 +7,7 @@ export const RequestAPI = {
     },
 
     getOneRequest(id) {
-        const url = process.env.VUE_APP_REQUEST_API_URL + id
+        const url = `${process.env.VUE_APP_REQUEST_API_URL}${id}`
         return DefaultAPIInstance.get(url)
     },
 
@@ -18,7 +18,7 @@ export const RequestAPI = {
     },
 
     deleteRequest(id) {
-        const url = process.env.VUE_APP_REQUEST_API_URL + id
+        const url = `${process.env.VUE_APP_REQUEST_API_URL}${id}`
         return DefaultAPIInstance.delete(url)
     },
 
