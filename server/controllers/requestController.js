@@ -24,7 +24,7 @@ class RequestController {
       const userRequests = await Request.findAndCountAll({
         include: [
           {
-          model: RequestType, as: 'requestType'
+            model: RequestType, as: 'requestType'
           },
           {
             model: RequestStatus, as: 'requestStatus'

@@ -1,4 +1,5 @@
 import { MaterialAPI } from "@/http/MaterialAPI";
+import { Alert } from "../alerts/alert";
 
 const state = {
   materials: [],
@@ -14,56 +15,41 @@ const actions = {
   async GET_MATERIALS_FROM_API({ commit }) {
     return await MaterialAPI.getAllMaterials()
       .then((res) => {
-        console.log(res.data);
         commit("setMaterials", res.data);
         commit("setMaterialsPie", res.data);
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        return Alert.errorAlert("Ошибка", error.response.data.message);
       });
   },
 
-  async ADD_MATERIAL(_,{ name, price, count, colorId, image }) {
+  async ADD_MATERIAL(_, { name, price, count, colorId, image }) {
     return await MaterialAPI.create(name, price, count, colorId, image)
-      .then((res) => {
-        console.log(res.data);
-        // commit('setMaterials', res.data);
+      .then(() => {
+        return Alert.successAlert("Добавление материала");
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        return Alert.errorAlert("Добавление материала", error.response.data.message);
       });
   },
 
-  async UPDATE_MATERIAL(_,{ id, name, price, count, colorId, image }) {
-    return await MaterialAPI.updateMaterial(
-      id,
-      name,
-      price,
-      count,
-      colorId,
-      image
-    )
-      .then((res) => {
-        console.log(res.data);
-        // commit('setMaterials', res.data);
+  async UPDATE_MATERIAL(_, { id, name, price, count, colorId, image }) {
+    return await MaterialAPI.updateMaterial(id, name, price, count, colorId, image)
+      .then(() => {
+        return Alert.successAlert("Изменение материала");
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        return Alert.errorAlert("Изменение материала", error.response.data.message);
       });
   },
 
-  async DELETE_MATERIAL(_,{ id }) {
+  async DELETE_MATERIAL(_, { id }) {
     return await MaterialAPI.deleteMaterial(id)
-      .then((res) => {
-        console.log(res.data);
-        // commit('setMaterials', res.data);
+      .then(() => {
+        return Alert.successAlert("Удаление материала");
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        return Alert.errorAlert("Удаление материала", error.response.data.message);
       });
   },
 };

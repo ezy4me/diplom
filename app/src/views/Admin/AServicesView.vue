@@ -14,7 +14,8 @@
             </v-sheet>
           </v-col>
           <v-dialog v-model="dialog" width="600">
-            <v-service-add-form @loadServices="loadServices"></v-service-add-form>
+            <v-service-add-form
+              @loadServices="loadServices"></v-service-add-form>
           </v-dialog>
         </v-row>
         <v-service-table :services="services" @selectService="selectService">
@@ -23,15 +24,20 @@
       <transition>
         <v-col v-if="isSelected" cols="4" class="border rounded">
           <div class="d-flex flex-column">
-            <div class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
-              <v-icon @click="closeInfo" icon="mdi-close" class="text-h6"></v-icon>
+            <div
+              class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
+              <v-icon
+                @click="closeInfo"
+                icon="mdi-close"
+                class="text-h6"></v-icon>
             </div>
             <v-service-edit-form
               :selectedService="selectedService"
-              @loadServices="loadServices"
-            >
+              @loadServices="loadServices">
             </v-service-edit-form>
-            <v-btn @click="deleteService" color="red" class="my-3">Удалить</v-btn>
+            <v-btn @click="deleteService" color="red" class="my-3"
+              >Удалить</v-btn
+            >
             <input type="service" class="w-100" />
           </div>
         </v-col>
@@ -100,7 +106,7 @@ export default {
       dialog,
       deleteService,
       colors,
-      loadServices
+      loadServices,
     };
   },
 };

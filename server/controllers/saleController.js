@@ -17,7 +17,7 @@ class SaleController {
       const sales = await Sale.findAndCountAll();
       return res.json(sales);
     } catch (e) {
-      return next(ApiError.InternetServerError(e.message)); 
+      return next(ApiError.InternetServerError(e.message));
     }
   }
 

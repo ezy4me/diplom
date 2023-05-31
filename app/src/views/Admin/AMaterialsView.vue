@@ -17,27 +17,33 @@
             <v-material-add-form
               :selectedMaterial="selectedMaterial"
               :materialColors="materialColors"
-              @loadMaterials="loadMaterials"
-            > 
+              @loadMaterials="loadMaterials">
             </v-material-add-form>
           </v-dialog>
         </v-row>
-        <v-material-table :materials="materials" @selectMaterial="selectMaterial">
+        <v-material-table
+          :materials="materials"
+          @selectMaterial="selectMaterial">
         </v-material-table>
       </v-col>
       <transition>
         <v-col v-if="isSelected" cols="4" class="border rounded">
           <div class="d-flex flex-column">
-            <div class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
-              <v-icon @click="closeInfo" icon="mdi-close" class="text-h6"></v-icon>
+            <div
+              class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
+              <v-icon
+                @click="closeInfo"
+                icon="mdi-close"
+                class="text-h6"></v-icon>
             </div>
             <v-material-edit-form
               :selectedMaterial="selectedMaterial"
               :materialColors="materialColors"
-              @loadMaterials="loadMaterials"
-            >
+              @loadMaterials="loadMaterials">
             </v-material-edit-form>
-            <v-btn @click="deleteMaterial" color="red" class="my-3">Удалить</v-btn>
+            <v-btn @click="deleteMaterial" color="red" class="my-3"
+              >Удалить</v-btn
+            >
             <input type="material" class="w-100" />
           </div>
         </v-col>

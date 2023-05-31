@@ -162,8 +162,7 @@ class ProductController {
       const options = { multi: true };
       const product = await Product.update(values, condition, options);
 
-      if(materials.length && furnitures.length)
-      {
+      if (materials.length && furnitures.length) {
         const materialsArr = materials.split(",");
         const furnituresArr = furnitures.split(",");
 
@@ -176,8 +175,8 @@ class ProductController {
 
         for (let i = 0; i < furnituresArr.length; i++) {
           await ProductFurniture.create({ productId: id, furnitureId: furnituresArr[i] });
+        }
       }
-    }
 
       return res.json(product);
     } catch (e) {

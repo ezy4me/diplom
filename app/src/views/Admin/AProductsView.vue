@@ -20,8 +20,7 @@
               :categories="categories"
               :sizes="sizes"
               :cuts="cuts"
-              @loadProducts="loadProducts"
-            >
+              @loadProducts="loadProducts">
             </v-product-add-form>
           </v-dialog>
         </v-row>
@@ -32,20 +31,25 @@
       <transition>
         <v-col v-if="isSelected" cols="3" class="border rounded">
           <div class="d-flex flex-column">
-            <div class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
-              <v-icon @click="closeInfo" icon="mdi-close" class="text-h6"></v-icon>
+            <div
+              class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
+              <v-icon
+                @click="closeInfo"
+                icon="mdi-close"
+                class="text-h6"></v-icon>
             </div>
             <v-product-edit-form
-            :selectedProduct="selectedProduct"
+              :selectedProduct="selectedProduct"
               :materials="materials"
               :furnitures="furnitures"
               :categories="categories"
               :sizes="sizes"
               :cuts="cuts"
-              @loadProducts="loadProducts"
-            >
+              @loadProducts="loadProducts">
             </v-product-edit-form>
-            <v-btn @click="deleteProduct" color="red" class="my-3">Удалить</v-btn>
+            <v-btn @click="deleteProduct" color="red" class="my-3"
+              >Удалить</v-btn
+            >
             <input type="product" class="w-100" />
           </div>
         </v-col>
@@ -149,7 +153,7 @@ export default {
       isSelected,
       dialog,
       deleteProduct,
-      loadProducts
+      loadProducts,
     };
   },
 };

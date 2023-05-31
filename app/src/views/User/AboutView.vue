@@ -2,7 +2,9 @@
   <div class="about-page">
     <div class="header__img">
       <div class="title header__title">Швейная фабрика</div>
-      <div class="header__subtitle">ИСТОРИЯ НАШЕГО ПРОИЗВОДСТВА 2000-2023 ГОД</div>
+      <div class="header__subtitle">
+        ИСТОРИЯ НАШЕГО ПРОИЗВОДСТВА 2000-2023 ГОД
+      </div>
     </div>
     <v-about-us />
   </div>
@@ -13,7 +15,6 @@ import VAboutUs from "../../components/User/AboutView/VAboutUs.vue";
 
 export default {
   name: "AboutView",
-
   components: { VAboutUs },
 };
 </script>

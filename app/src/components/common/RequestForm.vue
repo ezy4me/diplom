@@ -11,34 +11,30 @@
             :items="requestTypes.rows.map((t) => t.name)"
             :error-messages="v$.type.$errors.map((e) => e.$message)"
             label="Тема заявки"
-            variant="solo"
-          ></v-select>
+            variant="solo"></v-select>
           <v-text-field
             v-model="state.name"
             :error-messages="v$.name.$errors.map((e) => e.$message)"
-            label="Ваше имя"
-          ></v-text-field>
+            label="Ваше имя"></v-text-field>
           <v-text-field
             v-model="state.email"
             :error-messages="v$.email.$errors.map((e) => e.$message)"
-            label="Ваша почта"
-          ></v-text-field>
+            label="Ваша почта"></v-text-field>
           <v-text-field
             v-model="state.phone"
             maxlength="11"
             :error-messages="v$.phone.$errors.map((e) => e.$message)"
-            label="Ваш телефон"
-          ></v-text-field>
+            label="Ваш телефон"></v-text-field>
           <v-textarea
             v-model="state.description"
-            label="Комментарий"
-          ></v-textarea>
-          <v-btn type="submit" color="blue" block class="border">Отправить</v-btn>
+            label="Комментарий"></v-textarea>
+          <v-btn type="submit" color="blue" block class="border"
+            >Отправить</v-btn
+          >
         </v-form>
       </v-sheet>
     </v-card-text>
   </v-card>
-
 </template>
 
 <script>
@@ -47,11 +43,10 @@ import { useStore } from "vuex";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, email, numeric } from "@vuelidate/validators";
 export default {
-  setup(_, {emit}) {
-
+  setup(_, { emit }) {
     const store = useStore();
 
-    const requestTypes = computed(() => store.state.request.requestTypes)
+    const requestTypes = computed(() => store.state.request.requestTypes);
 
     const initialState = {
       name: null,
@@ -86,15 +81,13 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }
     }
 
     const addNewRequest = async () => {
-      console.log();
-        const result = await v$.value.$validate();
+      const result = await v$.value.$validate();
       if (result) {
         store
           .dispatch("request/ADD_REQUEST", {
@@ -102,21 +95,25 @@ export default {
             email: state.email,
             phone: state.phone,
             description: state.description,
-            requestType: requestTypes.value.rows.filter((t) => t.name === state.type)[0].id,
-          }).then(() => {
-            alert("Заявка отправлена")
-            emit("closeDialog")
+            requestType: requestTypes.value.rows.filter(
+              (t) => t.name === state.type
+            )[0].id,
           })
+          .then((error) => {
+            if (!error) {
+              emit("closeDialog");
+            }
+          });
       }
-    }
+    };
 
-    return { 
-        v$, 
-        state, 
-        clear,
-        addNewRequest,
-        requestTypes
-    }
+    return {
+      v$,
+      state,
+      clear,
+      addNewRequest,
+      requestTypes,
+    };
   },
 };
 </script>

@@ -14,23 +14,25 @@
             </v-sheet>
           </v-col>
           <v-dialog v-model="dialog" width="600">
-            <v-color-add-form @loadColors="loadColors">
-
-            </v-color-add-form>
+            <v-color-add-form @loadColors="loadColors"> </v-color-add-form>
           </v-dialog>
         </v-row>
-        <v-colors-table :colors="colors" @selectColor="selectColor"> </v-colors-table>
+        <v-colors-table :colors="colors" @selectColor="selectColor">
+        </v-colors-table>
       </v-col>
       <transition>
         <v-col v-if="isSelected" cols="4" class="border rounded">
           <div class="d-flex flex-column">
-            <div class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
-              <v-icon @click="closeInfo" icon="mdi-close" class="text-h6"></v-icon>
+            <div
+              class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
+              <v-icon
+                @click="closeInfo"
+                icon="mdi-close"
+                class="text-h6"></v-icon>
             </div>
             <v-color-edit-form
               :selectedColor="selectedColor"
-              @loadColors="loadColors"
-            >
+              @loadColors="loadColors">
             </v-color-edit-form>
             <v-btn @click="deleteColor" color="red" class="my-3">Удалить</v-btn>
           </div>
@@ -45,7 +47,7 @@ import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import VColorsTable from "../../components/Admin/Tables/VColorsTable.vue";
 import VColorEditForm from "../../components/Admin/Forms/ColorForms/VColorEditForm.vue";
-import VColorAddForm from '../../components/Admin/Forms/ColorForms/VColorAddForm.vue';
+import VColorAddForm from "../../components/Admin/Forms/ColorForms/VColorAddForm.vue";
 
 export default {
   components: { VColorsTable, VColorEditForm, VColorAddForm },

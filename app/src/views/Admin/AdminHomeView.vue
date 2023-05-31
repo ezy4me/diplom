@@ -1,9 +1,10 @@
 <template>
-  <!-- <div class="admin"> -->
   <v-container fluid class="h-100">
     <v-row class="h-25">
       <v-col>
-        <v-card color="blue" class="card-gradient text-center h-100 d-flex justify-center align-center">
+        <v-card
+          color="blue"
+          class="card-gradient text-center h-100 d-flex justify-center align-center">
           <v-card-item>
             <v-card-title class="text-h4 pa-3"> НОВЫЕ ЗАЯВКИ </v-card-title>
             <v-card-text class="text-h3 my-10 font-weight-bold">
@@ -13,7 +14,9 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-card color="blue" class="card-gradient text-center h-100 d-flex justify-center align-center">
+        <v-card
+          color="blue"
+          class="card-gradient text-center h-100 d-flex justify-center align-center">
           <v-card-item>
             <v-card-title class="text-h4 pa-3"> ПОЛЬЗОВАТЕЛИ </v-card-title>
             <v-card-text class="text-h3 my-10 font-weight-bold">
@@ -23,7 +26,9 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-card color="blue" class=" card-gradient text-center h-100 d-flex justify-center align-center">
+        <v-card
+          color="blue"
+          class="card-gradient text-center h-100 d-flex justify-center align-center">
           <v-card-item>
             <v-card-title class="text-h4 pa-3"> АКТИВНЫЕ ЗАКАЗЫ </v-card-title>
             <v-card-text class="text-h3 my-10 font-weight-bold">
@@ -36,33 +41,36 @@
 
     <v-row class="h-75">
       <v-col>
-        <v-card class="text-center pa-3 h-100 d-flex flex-column justify-space-between align-center">
+        <v-card
+          class="text-center pa-3 h-100 d-flex flex-column justify-space-between align-center">
           <v-card-item class="bg-blue w-100 rounded">
             <v-card-title class="text-h4 pa-3"> ОСТАТКИ ФУРНИТУР </v-card-title>
           </v-card-item>
-            <v-furniture-pie></v-furniture-pie>
+          <v-furniture-pie></v-furniture-pie>
         </v-card>
       </v-col>
       <v-col>
-        <v-card class="text-center pa-3 h-100 d-flex flex-column justify-space-between align-center">
+        <v-card
+          class="text-center pa-3 h-100 d-flex flex-column justify-space-between align-center">
           <v-card-item class="bg-blue w-100 rounded">
-            <v-card-title class="text-h4 pa-3"> ОСТАТКИ МАТЕРИАЛОВ </v-card-title>
+            <v-card-title class="text-h4 pa-3">
+              ОСТАТКИ МАТЕРИАЛОВ
+            </v-card-title>
           </v-card-item>
-            <v-material-pie></v-material-pie>
+          <v-material-pie></v-material-pie>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
-  <!-- </div> -->
 </template>
 
 <script>
 import store from "@/store";
 import { computed, onMounted } from "vue";
-import VMaterialPie from "@/components/Admin/Analiytics/VMaterialPie.vue"
-import VFurniturePie from '../../components/Admin/Analiytics/VFurniturePie.vue';
+import VMaterialPie from "@/components/Admin/Analiytics/VMaterialPie.vue";
+import VFurniturePie from "../../components/Admin/Analiytics/VFurniturePie.vue";
 export default {
-  components: {VMaterialPie, VFurniturePie},
+  components: { VMaterialPie, VFurniturePie },
   setup() {
     const newRequests = computed(() => store.state.request.newRequests);
     const usersCount = computed(() => store.state.user.users.count);

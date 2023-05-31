@@ -1,5 +1,5 @@
 import { SizeAPI } from '../../http/SizeAPI';
-
+import { Alert } from '../alerts/alert';
 const state = {
     sizes: [],
 }
@@ -12,12 +12,10 @@ const actions = {
     async GET_SIZES_FROM_API({ commit}) {
         return await SizeAPI.getAllSizes()
             .then((res) => {
-                console.log(res.data);
                 commit('setSizes', res.data);
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Ошибка", error.response.data.message);
             })
     },
 }

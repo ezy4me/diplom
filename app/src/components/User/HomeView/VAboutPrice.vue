@@ -3,9 +3,9 @@
     <div class="container">
       <div class="title about-price__title">ИЗ ЧЕГО СКЛАДЫВАЕТСЯ ЦЕНА:</div>
       <div class="desc about-price__desc">
-        Цена (стоимость) пошива одежды (женской, мужской, молодежной, детской, для полных
-        size+, спортивной, корпоративной на заказ под вашим брендом) на швейном
-        производстве всегда индивидуальна.
+        Цена (стоимость) пошива одежды (женской, мужской, молодежной, детской,
+        для полных size+, спортивной, корпоративной на заказ под вашим брендом)
+        на швейном производстве всегда индивидуальна.
       </div>
       <div class="about-price-grid">
         <div class="about-price-grid__item">
@@ -13,8 +13,8 @@
           <div class="about-price-grid__body">
             <div class="about-price-grid__title">Цена ткани</div>
             <div class="desc about-price-grid__desc">
-              До 80% стоимости изделия, зависит от цены доллара и качества, плотности,
-              цветности и состава + ее количество на единицу изделия.
+              До 80% стоимости изделия, зависит от цены доллара и качества,
+              плотности, цветности и состава + ее количество на единицу изделия.
             </div>
           </div>
         </div>
@@ -32,9 +32,9 @@
           <div class="about-price-grid__body">
             <div class="about-price-grid__title">Качество пошива</div>
             <div class="desc about-price-grid__desc">
-              Чем скоростнее шьют (например, Китай/ Киргизия/ Кыргызстан/ Казахстан), тем
-              менее ровные строчки, нет дополнительной обработки и меньше времени про
-              верку на брак.
+              Чем скоростнее шьют (например, Китай/ Киргизия/ Кыргызстан/
+              Казахстан), тем менее ровные строчки, нет дополнительной обработки
+              и меньше времени про верку на брак.
             </div>
           </div>
         </div>
@@ -42,7 +42,9 @@
           <div class="number">4</div>
           <div class="about-price-grid__body">
             <div class="about-price-grid__title">Наличие фурнитуры</div>
-            <div class="desc about-price-grid__desc">Нитки, кружево, замки.</div>
+            <div class="desc about-price-grid__desc">
+              Нитки, кружево, замки.
+            </div>
           </div>
         </div>
         <div class="about-price-grid__item">
@@ -50,8 +52,8 @@
           <div class="about-price-grid__body">
             <div class="about-price-grid__title">Наличие упаковки</div>
             <div class="desc about-price-grid__desc">
-              Для дальнейшей реализации на маркетплейсе / магазине одежды (фулфилмент под
-              ключ или полуфабрикаты без бренда.
+              Для дальнейшей реализации на маркетплейсе / магазине одежды
+              (фулфилмент под ключ или полуфабрикаты без бренда.
             </div>
           </div>
         </div>
@@ -70,7 +72,7 @@
 </template>
 
 <script>
-export default{
+export default {
   name: "AboutPrice",
 
   setup() {
@@ -103,9 +105,6 @@ export default{
   &__item {
     @include flex-column;
     gap: 1rem;
-  }
-
-  &__body {
   }
 
   &__title {

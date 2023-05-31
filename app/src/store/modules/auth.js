@@ -1,82 +1,80 @@
-    import { DefaultAPIInstance } from "@/http";
-    import { AuthAPI } from "@/http/AuthAPI";
-    import { Alert } from "../alerts/alert";
+import { DefaultAPIInstance } from "@/http";
+import { AuthAPI } from "@/http/AuthAPI";
+import { Alert } from "../alerts/alert";
 
-    const state = {
-        user: JSON.parse(localStorage.getItem('user')) || null,
-        credentials: {
-            token: localStorage.getItem('token') || null,
-            userRole: localStorage.getItem('userRole') || null,
-        },
-    }
+const state = {
+    user: JSON.parse(localStorage.getItem('user')) || null,
+    credentials: {
+        token: localStorage.getItem('token') || null,
+        userRole: localStorage.getItem('userRole') || null,
+    },
+}
 
-    const getters = {
-        getUserRole: (state) => state.credentials.userRole,
-        getUser: (state) => state.user,
-    }
+const getters = {
+    getUserRole: (state) => state.credentials.userRole,
+    getUser: (state) => state.user,
+}
 
-    const actions = {
-        async ON_LOGIN({commit}, {email, password}) {
-            return AuthAPI.login(email, password).then((res) => {
+const actions = {
+    async ON_LOGIN({ commit }, { email, password }) {
+        return AuthAPI.login(email, password)
+            .then((res) => {
                 commit('setToken', res.data.token);
                 commit('setUserRole', res.data.user.role);
                 commit('setUser', res.data.user);
                 DefaultAPIInstance.defaults.headers['authorization'] = 'Bearer ' + res.data.token;
-                Alert.seccesAlert()
+                return Alert.successAlert("Авторизация")
             })
-            .catch((error) => {
-                console.log(error);
-                return error;
-            })   
-            
-        },
+            .catch(() => {
+                return Alert.errorAlert("Авторизация")
+            })
+    },
 
-        async ON_LOGOUT({commit}){
-            commit('deleteToken');
-            commit('deleteUserRole');
-            commit('deleteUser');
-            delete DefaultAPIInstance.defaults.headers['authorization'];
-        },
+    async ON_LOGOUT({ commit }) {
+        commit('deleteToken');
+        commit('deleteUserRole');
+        commit('deleteUser');
+        delete DefaultAPIInstance.defaults.headers['authorization'];
+        Alert.successAlert("Выход")
+    },
+}
 
-    }
+const mutations = {
+    setToken(state, token) {
+        state.credentials.token = token;
+        localStorage.setItem('token', token);
+    },
 
-    const mutations = {
+    setUserRole(state, userRole) {
+        state.credentials.userRole = userRole;
+        localStorage.setItem('userRole', userRole);
+    },
 
-        setToken(state, token) {
-            state.credentials.token = token;
-            localStorage.setItem('token', token);
-        },
+    setUser(state, user) {
+        state.user = user;
+        localStorage.setItem('user', JSON.stringify(user));
+    },
 
-        setUserRole(state, userRole) {
-            state.credentials.userRole = userRole;
-            localStorage.setItem('userRole', userRole);
-        },
+    deleteToken(state) {
+        state.credentials.token = null;
+        localStorage.removeItem('token');
+    },
 
-        setUser(state, user) {
-            state.user = user;
-            localStorage.setItem('user', JSON.stringify(user));
-        },
+    deleteUserRole(state) {
+        state.credentials.userRole = null;
+        localStorage.removeItem('userRole');
+    },
 
-        deleteToken(state) {
-            state.credentials.token = null;
-            localStorage.removeItem('token');
-        },
+    deleteUser(state) {
+        state.user = null;
+        localStorage.removeItem('user');
+    },
+}
 
-        deleteUserRole(state) {
-            state.credentials.userRole = null;
-            localStorage.removeItem('userRole');
-        },
-
-        deleteUser(state) {
-            state.user = null;
-            localStorage.removeItem('user');
-        },    
-    }
-
-    export default {
-        namespaced: true,
-        state,
-        getters,
-        actions,
-        mutations
-    }
+export default {
+    namespaced: true,
+    state,
+    getters,
+    actions,
+    mutations
+}

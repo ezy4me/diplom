@@ -9,20 +9,21 @@
           <v-text-field
             :error-messages="v$.email.$errors.map((e) => e.$message)"
             v-model="state.email"
-            label="Email"
-          ></v-text-field>
+            label="Email"></v-text-field>
           <v-text-field
             :error-messages="v$.fio.$errors.map((e) => e.$message)"
             v-model="state.fio"
-            label="ФИО"
-          ></v-text-field>
+            label="ФИО"></v-text-field>
           <v-text-field
             :error-messages="v$.phone.$errors.map((e) => e.$message)"
             v-model="state.phone"
+            type="text"
             maxlength="11"
-            label="Телефон"
-          ></v-text-field>
-          <v-btn type="submit" color="green" block class="border">Добавить</v-btn>
+            minlength="10"
+            label="Телефон"></v-text-field>
+          <v-btn type="submit" color="green" block class="border">
+            Добавить
+          </v-btn>
         </v-form>
       </v-sheet>
     </v-card-text>
@@ -64,7 +65,6 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }
@@ -72,7 +72,7 @@ export default {
 
     const addNewUser = async () => {
       const result = await v$.value.$validate();
-      const pass = state.email
+      const pass = state.email;
       if (result) {
         store
           .dispatch("user/ADD_USER", {
@@ -83,7 +83,6 @@ export default {
           })
           .then(() => {
             emit("loadUsers");
-            console.log(pass);
           });
       }
     };

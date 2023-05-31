@@ -51,6 +51,7 @@ async function create(req, res, next) {
         return next(ApiError.NotFound("Данное изделие уже существует!"))
     }
 
+
     next()
 }
 
@@ -85,9 +86,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указан материал изделия!"))
     }
 
-    const product = await Product.findOne({ where: { type } })
+    const product = await Product.findOne({ where: { id } })
 
-    if (product) {
+    if (name != product.name && await Product.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данное изделие уже существует!"))
     }
 

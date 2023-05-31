@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-
 import UserRouter from './UserRouter'
 import AdminRouter from './AdminRouter'
 

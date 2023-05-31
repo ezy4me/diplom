@@ -41,9 +41,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указано название типа заявки!"))
     }
 
-    const requestType = await RequestType.findOne({ where: { name } })
+    const requestType = await RequestType.findOne({ where: { id } })
 
-    if (requestType) {
+    if (name != requestType.name && await RequestType.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данный тип уже существует!"))
     }
 

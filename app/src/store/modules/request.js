@@ -1,4 +1,5 @@
 import { RequestAPI } from "../../http/RequestAPI";
+import { Alert } from "../alerts/alert";
 
 const state = {
   requests: [],
@@ -24,7 +25,7 @@ const actions = {
         commit("setNewRequests", res.data);
       })
       .catch((error) => {
-        return error;
+        return Alert.errorAlert("Ошибка", error.response.data.message);
       });
   },
 
@@ -34,7 +35,7 @@ const actions = {
         commit("setRequestTypes", res.data);
       })
       .catch((error) => {
-        return error;
+        return Alert.errorAlert("Ошибка", error.response.data.message);
       });
   },
 
@@ -44,47 +45,47 @@ const actions = {
         commit("setRequestStatuses", res.data);
       })
       .catch((error) => {
-        return error;
+        return Alert.errorAlert("Ошибка", error.response.data.message);
       });
   },
 
   async GET_REQUEST_FROM_API({ commit }, { id }) {
     return await RequestAPI.getOneRequest(id)
       .then((res) => {
-        console.log(res.data);
         commit("setRequest", res.data);
       })
       .catch((error) => {
-        return error;
+        return Alert.errorAlert("Ошибка", error.response.data.message);
       });
   },
 
   async ADD_REQUEST(_, { name, email, phone, description, requestType }) {
     return await RequestAPI.create(name, email, phone, description, requestType)
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        return Alert.successAlert("Отправка заявки");
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        return Alert.errorAlert("Отправка заявки", error.response.data.message);
       });
   },
 
   async DELETE_REQUEST(_, { id }) {
-    return await RequestAPI.deleteRequest(id).catch((error) => {
-      console.log(error);
-      return error;
-    });
+    return await RequestAPI.deleteRequest(id)
+      .then(() => {
+        return Alert.successAlert("Удаление заявки");
+      })
+      .catch((error) => {
+        return Alert.errorAlert("Удаление заявки", error.response.data.message);
+      });
   },
 
   async UPDATE_REQUEST(_, { id, name, email, phone, description, requestStatus }) {
     return await RequestAPI.updateRequest(id, name, email, phone, description, requestStatus)
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        return Alert.successAlert("Изменение заявки");
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        return Alert.errorAlert("Изменение заявки", error.response.data.message);
       });
   },
 };

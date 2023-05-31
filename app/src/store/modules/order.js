@@ -1,5 +1,5 @@
 import { OrderAPI } from "../../http/OrderAPI";
-
+import { Alert } from "../alerts/alert";
 const state = {
   orders: [],
   order: [],
@@ -20,66 +20,47 @@ const actions = {
         commit("setActiveOrders", res.data);
       })
       .catch((error) => {
-        return error;
+        return Alert.errorAlert("Ошибка", error.response.data.message);
       });
   },
 
   async GET_ORDER_FROM_API({ commit }, { id }) {
     return await OrderAPI.getOneOrder(id)
       .then((res) => {
-        console.log(res.data);
         commit("setOrder", res.data);
       })
       .catch((error) => {
-        return error;
+        return Alert.errorAlert("Ошибка", error.response.data.message);
       });
   },
 
   async ADD_ORDER(_, { userId, paymentId, saleId, orderStatusId, products }) {
-    return await OrderAPI.create(
-      userId,
-      paymentId,
-      saleId,
-      orderStatusId,
-      products
-    )
-      .then((res) => {
-        // commit('setOrders', res.data);
-        console.log(res.data);
+    return await OrderAPI.create(userId, paymentId, saleId, orderStatusId, products)
+      .then(() => {
+        return Alert.successAlert("Добавление заказа");
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        return Alert.errorAlert("Добавление заказа", error.response.data.message);
       });
   },
 
   async DELETE_ORDER(_, { id }) {
-    return await OrderAPI.deleteOrder(id).catch((error) => {
-      console.log(error);
-      return error;
-    });
-  },
-
-  async UPDATE_ORDER(
-    _,
-    { id, userId, paymentId, saleId, orderStatusId, products }
-  ) {
-    return await OrderAPI.updateOrder(
-      id,
-      userId,
-      paymentId,
-      saleId,
-      orderStatusId,
-      products
-    )
-      .then((res) => {
-        console.log(res.data);
-
-        // commit('setOrders', res.data);
+    return await OrderAPI.deleteOrder(id)
+      .then(() => {
+        return Alert.successAlert("Удаление заказа");
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        return Alert.errorAlert("Удаление заказа", error.response.data.message);
+      });
+  },
+
+  async UPDATE_ORDER(_, { id, userId, paymentId, saleId, orderStatusId, products }) {
+    return await OrderAPI.updateOrder(id, userId, paymentId, saleId, orderStatusId, products)
+      .then(() => {
+        return Alert.successAlert("Изменение заказа");
+      })
+      .catch((error) => {
+        return Alert.errorAlert("Изменение заказа", error.response.data.message);
       });
   },
 };
@@ -89,7 +70,7 @@ const mutations = {
     state.orders = orders;
     localStorage.setItem("orders", JSON.stringify(orders));
   },
-  
+
   setOrder(state, order) {
     state.order = order;
     localStorage.setItem("order", JSON.stringify(order));

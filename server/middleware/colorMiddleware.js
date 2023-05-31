@@ -47,9 +47,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указано значение цвета!"))
     }
 
-    const color = await Color.findOne({ where: { name } })
+    const color = await Color.findOne({ where: { id } })
 
-    if (color) {
+    if (name != color.name && await Color.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данный цвет уже существует!"))
     }
 

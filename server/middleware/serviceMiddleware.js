@@ -30,7 +30,6 @@ async function create(req, res, next) {
         return next(ApiError.NotFound("Некорректно указана стоимость услуги!"))
     }
 
-
     const service = await Service.findOne({ where: { name } })
 
     if (service) {
@@ -55,9 +54,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указана стоимость услуги!"))
     }
 
-    const service = await Service.findOne({ where: { name } })
+    const service = await Service.findOne({ where: { id } })
 
-    if (service) {
+    if (name != service.name && await Service.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данная услуга уже существует!"))
     }
 

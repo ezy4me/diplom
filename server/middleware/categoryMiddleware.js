@@ -41,9 +41,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указано название категории!"))
     }
 
-    const category = await Category.findOne({ where: { name } })
+    const category = await Category.findOne({ where: { id } })
 
-    if (category) {
+    if (name != category.name && await Category.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данная категория уже существует!"))
     }
 

@@ -8,14 +8,9 @@
           </v-col>
           <v-col>
             <v-sheet class="d-flex align-center justify-center">
-              <v-btn :disabled="true" color="green" class="my-3 w-100"
-                ></v-btn
-              >
+              <v-btn :disabled="true" color="green" class="my-3 w-100"></v-btn>
             </v-sheet>
           </v-col>
-          <!-- <v-dialog v-model="dialog" width="600">
-            <v-request-add-form @loadRequests="loadRequests"></v-request-add-form>
-          </v-dialog> -->
         </v-row>
         <v-request-table :requests="requests" @selectRequest="selectRequest">
         </v-request-table>
@@ -23,29 +18,30 @@
       <transition>
         <v-col v-if="isSelected" cols="3" class="border rounded">
           <div class="d-flex flex-column">
-            <div class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
-              <v-icon @click="closeInfo" icon="mdi-close" class="text-h6"></v-icon>
+            <div
+              class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
+              <v-icon
+                @click="closeInfo"
+                icon="mdi-close"
+                class="text-h6"></v-icon>
             </div>
+            <h5 class="text-h6">Пользователь: {{ selectedRequest.name }}</h5>
+            <h5 class="text-h6">Телефон: {{ selectedRequest.phone }}</h5>
+            <h5 class="text-h6">Почта: {{ selectedRequest.email }}</h5>
             <h5 class="text-h6">
-                Пользователь: {{ selectedRequest.name }}
+              Тема заявки: {{ selectedRequest.requestType.name }}
             </h5>
-            <h5 class="text-h6">
-                Телефон: {{ selectedRequest.phone }}
-            </h5>
-            <h5 class="text-h6">
-                Почта: {{ selectedRequest.email }}
-            </h5>
-            <h5 class="text-h6">
-                Тема заявки: {{ selectedRequest.requestType.name }}
-            </h5>
-            <v-btn @click="addNewUser" color="green" class="my-3">Создать учетную запись</v-btn>
+            <v-btn @click="addNewUser" color="green" class="my-3"
+              >Создать учетную запись</v-btn
+            >
             <v-request-edit-form
               :selectedRequest="selectedRequest"
               :requestStatuses="requestStatuses"
-              @loadRequests="loadRequests"
-            >
+              @loadRequests="loadRequests">
             </v-request-edit-form>
-            <v-btn @click="deleteRequest" color="red" class="my-3">Удалить</v-btn>
+            <v-btn @click="deleteRequest" color="red" class="my-3"
+              >Удалить</v-btn
+            >
             <input type="request" class="w-100" />
           </div>
         </v-col>
@@ -61,7 +57,7 @@ import VRequestEditForm from "../../components/Admin/Forms/RequestForms/VRequest
 import VRequestTable from "../../components/Admin/Tables/VRequestTable.vue";
 
 export default {
-  components: {  VRequestTable, VRequestEditForm },
+  components: { VRequestTable, VRequestEditForm },
   setup() {
     const store = useStore();
 
@@ -107,31 +103,26 @@ export default {
     };
 
     const addNewUser = () => {
-      store
-          .dispatch("user/ADD_USER", {
-            email: selectedRequest.value.email,
-            password: selectedRequest.value.email,
-            fio: selectedRequest.value.name,
-            phone: selectedRequest.value.phone,
-          })
-          .then(() => {
-            alert("Учетная запись создана!");
-          });
-    }
+      store.dispatch("user/ADD_USER", {
+        email: selectedRequest.value.email,
+        password: selectedRequest.value.email,
+        fio: selectedRequest.value.name,
+        phone: selectedRequest.value.phone,
+      });
+    };
 
     return {
       requests,
       selectRequest,
       selectedRequest,
       requestStatuses,
-
       closeInfo,
       isSelected,
       dialog,
       deleteRequest,
       colors,
       addNewUser,
-      loadRequests
+      loadRequests,
     };
   },
 };

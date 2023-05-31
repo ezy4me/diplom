@@ -1,4 +1,5 @@
-    import { CategoryAPI } from '@/http/CategoryAPI';
+import { CategoryAPI } from '@/http/CategoryAPI';
+import { Alert } from '../alerts/alert';
 
 const state = {
     categories: [],
@@ -9,14 +10,13 @@ const getters = {
 }
 
 const actions = {
-    async GET_CATEGORIES_FROM_API({ commit}) {
+    async GET_CATEGORIES_FROM_API({ commit }) {
         return await CategoryAPI.getAllCategories()
             .then((res) => {
                 commit('setCategories', res.data);
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Добавление цвета", error.response.data.message);
             })
     },
 }

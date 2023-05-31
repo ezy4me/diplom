@@ -4,19 +4,18 @@
       <v-text-field
         :error-messages="v$.email.$errors.map((e) => e.$message)"
         v-model="state.email"
-        label="Email"
-      ></v-text-field>
+        label="Email"></v-text-field>
       <v-text-field
         :error-messages="v$.fio.$errors.map((e) => e.$message)"
         v-model="state.fio"
-        label="ФИО"
-      ></v-text-field>
+        label="ФИО"></v-text-field>
       <v-text-field
         :error-messages="v$.phone.$errors.map((e) => e.$message)"
         v-model="state.phone"
+        type="phone"
         maxlength="11"
-        label="Телефон"
-      ></v-text-field>
+        minlength="10"
+        label="Телефон"></v-text-field>
       <v-btn type="submit" color="blue" block class="border">Изменить</v-btn>
     </v-form>
   </v-sheet>
@@ -72,7 +71,6 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }
@@ -103,5 +101,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

@@ -1,4 +1,5 @@
 import { FurnitureAPI } from '@/http/FurnitureAPI';
+import { Alert } from '../alerts/alert';
 
 const state = {
     furnitures: [],
@@ -11,54 +12,45 @@ const getters = {
 }
 
 const actions = {
-    async GET_FURNITURES_FROM_API({ commit}) {
+    async GET_FURNITURES_FROM_API({ commit }) {
         return await FurnitureAPI.getAllFurnitures()
             .then((res) => {
-                console.log(res.data);
                 commit('setFurnitures', res.data);
                 commit('setFurnituresPie', res.data);
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Ошибка", error.response.data.message);
             })
     },
-    async ADD_FURNITURE(_,{name, price, count, colorId, image}) {
+    async ADD_FURNITURE(_, { name, price, count, colorId, image }) {
         return await FurnitureAPI.create(name, price, count, colorId, image)
-            .then((res) => {
-                console.log(res.data);
-                // commit('setFurnitures', res.data);
+            .then(() => {
+                return Alert.successAlert("Добавление фурнитуры");
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Добавление фурнитуры", error.response.data.message);
             })
     },
 
-    async UPDATE_FURNITURE(_,{id, name, price, count, colorId, image}) {
+    async UPDATE_FURNITURE(_, { id, name, price, count, colorId, image }) {
         return await FurnitureAPI.updateFurniture(id, name, price, count, colorId, image)
-            .then((res) => {
-                console.log(res.data);
-                // commit('setFurnitures', res.data);
+            .then(() => {
+                return Alert.successAlert("Изменение фурнитуры");
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Изменение фурнитуры", error.response.data.message);
             })
     },
 
-    async DELETE_FURNITURE(_,{id}) {
+    async DELETE_FURNITURE(_, { id }) {
         return await FurnitureAPI.deleteFurniture(id)
-            .then((res) => {
-                console.log(res.data);
-                // commit('setFurnitures', res.data);
+            .then(() => {
+                return Alert.successAlert("Удаление фурнитуры");
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Удаление фурнитуры", error.response.data.message);
             })
     },
-
 }
 
 const mutations = {

@@ -75,7 +75,7 @@ class MaterialController {
         const values = { name, price, count, colorId };
         const material = await Material.update(values, condition, options);
         return res.json(material);
-      } 
+      }
       else {
         const image = req.files.image;
         let fileName = uuid.v4() + ".jpg";

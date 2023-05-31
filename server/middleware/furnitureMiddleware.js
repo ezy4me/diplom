@@ -60,9 +60,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указан цвет фурнитуры!"))
     }
 
-    const furniture = await Furniture.findOne({ where: { name } })
+    const furniture = await Furniture.findOne({ where: { id } })
 
-    if (furniture) {
+    if (name != furniture.name && await Furniture.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данная фурнитура уже существует!"))
     }
 

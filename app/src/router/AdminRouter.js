@@ -8,16 +8,12 @@ import AServicesView from '../views/Admin/AServicesView.vue'
 import AProductsView from '../views/Admin/AProductsView.vue'
 import AOrdersView from '../views/Admin/AOrdersView.vue'
 
-// const isAuthorized = Object.prototype.hasOwnProperty.call(localStorage, 'token') 
-
 const adminAuthGuard = function (to, from, next) {
   if (localStorage.getItem('userRole') !== 'ADMIN') {
-    console.log('ты не админ');
     next({ name: 'home' })
   }
   else next()
 }
-
 
 const AdminRouter = [
   {

@@ -16,36 +16,39 @@
         </div>
         <div class="orders">
           <div class="orders__list">
-            <div v-for="order in userOrders" :key="order.id" class="orders__item">
-              <div class="orders__item-title">Заказ # {{ order[0].orderId }}</div>
+            <div
+              v-for="order in userOrders"
+              :key="order.id"
+              class="orders__item">
+              <div class="orders__item-title">
+                Заказ # {{ order[0].orderId }}
+              </div>
               <div class="orders__item-desc">{{ totalPrice(order) }} ₽</div>
 
               <div
                 v-if="order[0].payment == 'Оплачен'"
-                class="orders__item-status text-green text-uppercase"
-              >
+                class="orders__item-status text-green text-uppercase">
                 {{ order[0].payment }}
               </div>
               <div
                 v-else-if="order[0].payment == 'Не оплачен'"
-                class="orders__item-status text-red text-uppercase"
-              >
+                class="orders__item-status text-red text-uppercase">
                 {{ order[0].payment }}
               </div>
 
               <div
                 v-if="order[0].status == 'Новый'"
-                class="orders__item-status text-green text-uppercase"
-              >
+                class="orders__item-status text-green text-uppercase">
                 {{ order[0].status }}
               </div>
               <div
                 v-else-if="order[0].status == 'Завершен'"
-                class="orders__item-status text-red text-uppercase"
-              >
+                class="orders__item-status text-red text-uppercase">
                 {{ order[0].status }}
               </div>
-              <div v-else class="orders__item-status text-yellow text-uppercase">
+              <div
+                v-else
+                class="orders__item-status text-yellow text-uppercase">
                 {{ order[0].status }}
               </div>
             </div>
@@ -94,7 +97,6 @@ export default {
       store.dispatch("user/GET_USER_ORDERS_FROM_API", {
         id: user.value.id,
       });
-      console.log(user.value);
     };
 
     const totalPrice = (order) => {

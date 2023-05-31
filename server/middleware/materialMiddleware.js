@@ -60,9 +60,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указан цвет материала!"))
     }
 
-    const material = await Material.findOne({ where: { name } })
+    const material = await Material.findOne({ where: { id } })
 
-    if (material) {
+    if (name != material.name && await Material.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данный материал уже существует!"))
     }
 

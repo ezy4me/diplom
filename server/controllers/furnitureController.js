@@ -75,7 +75,7 @@ class FurnitureController {
         const values = { name, price, count, colorId };
         const furniture = await Furniture.update(values, condition, options);
         return res.json(furniture);
-      } 
+      }
       else {
         const image = req.files.image;
         let fileName = uuid.v4() + ".jpg";

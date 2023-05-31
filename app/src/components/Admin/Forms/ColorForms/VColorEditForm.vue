@@ -4,13 +4,11 @@
       <v-text-field
         v-model="state.name"
         :error-messages="v$.name.$errors.map((e) => e.$message)"
-        label="Название"
-      ></v-text-field>
+        label="Название"></v-text-field>
       <v-text-field
         v-model="state.hex"
         :error-messages="v$.hex.$errors.map((e) => e.$message)"
-        label="hex"
-      ></v-text-field>
+        label="hex"></v-text-field>
       <v-color-picker width="auto" class="my-3" v-model="state.hex" />
       <v-btn type="submit" color="blue" block class="border">Изменить</v-btn>
     </v-form>
@@ -61,7 +59,6 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }
@@ -91,5 +88,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

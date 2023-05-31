@@ -41,9 +41,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указано название категории!"))
     }
 
-    const sale = await Sale.findOne({ where: { name } })
+    const sale = await Sale.findOne({ where: { id } })
 
-    if (sale) {
+    if (name != sale.name && await Sale.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данная скидка уже существует!"))
     }
 

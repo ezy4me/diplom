@@ -2,7 +2,9 @@
   <div class="main-page">
     <div class="header__img">
       <div class="title header__title">Швейное производство</div>
-      <div class="header__subtitle">Пошив текстильной и трикотажной одежды на заказ</div>
+      <div class="header__subtitle">
+        Пошив текстильной и трикотажной одежды на заказ
+      </div>
       <div class="header__info">
         <div>
           <v-icon icon="mdi-cog"></v-icon>
@@ -29,9 +31,8 @@
 import VAboutPrice from "../../components/User/HomeView/VAboutPrice.vue";
 import VWorkingScheme from "../../components/User/HomeView/VWorkingScheme.vue";
 
-export default{
+export default {
   name: "HelloView",
-
   setup() {
     return {};
   },

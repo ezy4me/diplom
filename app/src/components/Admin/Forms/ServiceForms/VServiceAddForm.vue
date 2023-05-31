@@ -9,26 +9,24 @@
           <v-text-field
             v-model="state.name"
             :error-messages="v$.name.$errors.map((e) => e.$message)"
-            label="Название"
-          ></v-text-field>
+            label="Название"></v-text-field>
           <v-text-field
             v-model="state.price"
             :error-messages="v$.price.$errors.map((e) => e.$message)"
-            label="Стоимость"
-          ></v-text-field>
+            label="Стоимость"></v-text-field>
           <v-textarea
             v-model="state.description"
             :error-messages="v$.description.$errors.map((e) => e.$message)"
-            label="Описание"
-          ></v-textarea>
+            label="Описание"></v-textarea>
           <v-file-input
             v-model="state.image"
             type="file"
             :error-messages="v$.image.$errors.map((e) => e.$message)"
             label="Изображение"
-            variant="solo"
-          ></v-file-input>
-          <v-btn type="submit" color="green" block class="border">Добавить</v-btn>
+            variant="solo"></v-file-input>
+          <v-btn type="submit" color="green" block class="border"
+            >Добавить</v-btn
+          >
         </v-form>
       </v-sheet>
     </v-card-text>
@@ -76,7 +74,6 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }

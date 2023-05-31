@@ -2,7 +2,9 @@
   <div class="contacts-page">
     <div class="header__img">
       <div class="title header__title">Швейный цех</div>
-      <div class="header__subtitle">ПОШИВ ОДЕЖДЫ НА ЗАКАЗ В КАЗАНИ И РЕСПУБЛИКЕ ТАТАРСТАН</div>
+      <div class="header__subtitle">
+        ПОШИВ ОДЕЖДЫ НА ЗАКАЗ В КАЗАНИ И РЕСПУБЛИКЕ ТАТАРСТАН
+      </div>
     </div>
     <div class="container">
       <div class="title contacts-page__title">Наши контакты</div>
@@ -44,7 +46,7 @@ export default {
 .contacts-page {
   margin-top: 4rem;
 
-  &__title{
+  &__title {
     margin-top: 4rem;
   }
 
@@ -64,7 +66,7 @@ export default {
     @include font-size(30, normal, 1.2);
   }
 
-  &__body{
+  &__body {
     @include flex-column;
     gap: 2rem;
   }

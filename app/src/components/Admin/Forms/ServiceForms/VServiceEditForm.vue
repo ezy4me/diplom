@@ -2,31 +2,26 @@
   <v-sheet class="my-3 w-100">
     <v-img
       height="300"
-      :src="'http://localhost:5000/' + selectedService.image"
-    ></v-img>
+      :src="'http://localhost:5000/' + selectedService.image"></v-img>
     <v-form @submit.prevent="updateService">
       <v-text-field
         v-model="state.name"
         :error-messages="v$.name.$errors.map((e) => e.$message)"
-        label="Название"
-      ></v-text-field>
+        label="Название"></v-text-field>
       <v-text-field
         v-model="state.price"
         :error-messages="v$.price.$errors.map((e) => e.$message)"
-        label="Стоимость"
-      ></v-text-field>
+        label="Стоимость"></v-text-field>
       <v-textarea
         v-model="state.description"
         :error-messages="v$.description.$errors.map((e) => e.$message)"
-        label="Описание"
-      ></v-textarea>
+        label="Описание"></v-textarea>
       <v-file-input
         label="Изображение"
         type="file"
         required
         v-model="state.image"
-        variant="solo"
-      ></v-file-input>
+        variant="solo"></v-file-input>
       <v-btn type="submit" color="blue" block class="border">Изменить</v-btn>
     </v-form>
   </v-sheet>
@@ -44,7 +39,7 @@ export default {
       default: () => {
         return {};
       },
-    }
+    },
   },
   setup(props, { emit }) {
     const store = useStore();
@@ -86,7 +81,6 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }
@@ -101,7 +95,7 @@ export default {
             name: state.name,
             price: state.price,
             description: state.description,
-            image: state.image[0]
+            image: state.image[0],
           })
           .then(() => {
             emit("loadServices");

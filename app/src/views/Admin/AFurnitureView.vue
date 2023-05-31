@@ -4,7 +4,7 @@
       <v-col class="border rounded mr-3">
         <v-row class="align-center">
           <v-col cols="10">
-            <h3 class="text-h4 font-weight-light">Фурнитуры </h3>
+            <h3 class="text-h4 font-weight-light">Фурнитуры</h3>
           </v-col>
           <v-col>
             <v-sheet class="d-flex align-center justify-center">
@@ -17,27 +17,33 @@
             <v-furniture-add-form
               :selectedFurniture="selectedFurniture"
               :furnitureColors="furnitureColors"
-              @loadFurnitures="loadFurnitures"
-            >
+              @loadFurnitures="loadFurnitures">
             </v-furniture-add-form>
           </v-dialog>
         </v-row>
-        <v-furniture-table :furnitures="furnitures" @selectFurniture="selectFurniture">
+        <v-furniture-table
+          :furnitures="furnitures"
+          @selectFurniture="selectFurniture">
         </v-furniture-table>
       </v-col>
       <transition>
         <v-col v-if="isSelected" cols="4" class="border rounded">
           <div class="d-flex flex-column">
-            <div class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
-              <v-icon @click="closeInfo" icon="mdi-close" class="text-h6"></v-icon>
+            <div
+              class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
+              <v-icon
+                @click="closeInfo"
+                icon="mdi-close"
+                class="text-h6"></v-icon>
             </div>
             <v-furniture-edit-form
               :selectedFurniture="selectedFurniture"
               :furnitureColors="furnitureColors"
-              @loadFurnitures="loadFurnitures"
-            >
+              @loadFurnitures="loadFurnitures">
             </v-furniture-edit-form>
-            <v-btn @click="deleteFurniture" color="red" class="my-3">Удалить</v-btn>
+            <v-btn @click="deleteFurniture" color="red" class="my-3"
+              >Удалить</v-btn
+            >
             <input type="furniture" class="w-100" />
           </div>
         </v-col>

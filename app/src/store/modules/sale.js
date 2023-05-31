@@ -1,5 +1,5 @@
 import { SaleAPI } from '../../http/SaleAPI';
-
+import { Alert } from '../alerts/alert';
 const state = {
     sales: [],
 }
@@ -12,12 +12,10 @@ const actions = {
     async GET_SALES_FROM_API({ commit }) {
         return await SaleAPI.getAllSales()
             .then((res) => {
-                console.log(res.data);
                 commit('setSales', res.data);
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Ошибка", error.response.data.message);
             })
     }
 }

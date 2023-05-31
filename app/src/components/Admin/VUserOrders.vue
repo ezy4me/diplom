@@ -10,7 +10,9 @@
           <v-card-item>
             <v-row class="align-center">
               <v-col>
-                <v-card-item-title>Заказ # {{ order[0].orderId }}</v-card-item-title>
+                <v-card-item-title
+                  >Заказ # {{ order[0].orderId }}</v-card-item-title
+                >
               </v-col>
               <v-col cols="6">
                 <div class="d-flex flex-column justify-start">
@@ -18,31 +20,29 @@
                     {{ order[0].date.substring(10, 0) }}
                   </div>
 
-                  <div class="text-body-1">Стоимость: {{ totalPrice(order) }}</div>
+                  <div class="text-body-1">
+                    Стоимость: {{ totalPrice(order) }}
+                  </div>
 
                   <div
                     v-if="order[0].payment == 'Оплачен'"
-                    class="text-body-1 text-green text-uppercase"
-                  >
+                    class="text-body-1 text-green text-uppercase">
                     Статус оплаты: {{ order[0].payment }}
                   </div>
                   <div
                     v-else-if="order[0].payment == 'Не оплачен'"
-                    class="text-body-1 text-red text-uppercase"
-                  >
+                    class="text-body-1 text-red text-uppercase">
                     Статус оплаты: {{ order[0].payment }}
                   </div>
 
                   <div
                     v-if="order[0].status == 'Новый'"
-                    class="text-body-1 text-green text-uppercase"
-                  >
+                    class="text-body-1 text-green text-uppercase">
                     Статус: {{ order[0].status }}
                   </div>
                   <div
                     v-else-if="order[0].status == 'Завершен'"
-                    class="text-body-1 text-red text-uppercase"
-                  >
+                    class="text-body-1 text-red text-uppercase">
                     Статус: {{ order[0].status }}
                   </div>
                   <div v-else class="text-body-1 text-yellow text-uppercase">
@@ -50,13 +50,14 @@
                   </div>
                 </div>
               </v-col>
-              <v-col class="d-flex  justify-center">
-                <v-btn @click="selectOrder(order)" color="primary"> Подробнее </v-btn>
+              <v-col class="d-flex justify-center">
+                <v-btn @click="selectOrder(order)" color="primary">
+                  Подробнее
+                </v-btn>
                 <v-dialog v-model="dialogOrder" width="auto">
                   <v-order-info
                     :orderProducts="orderProducts"
-                    @closeDialogOrder="closeDialogOrder"
-                  ></v-order-info>
+                    @closeDialogOrder="closeDialogOrder"></v-order-info>
                 </v-dialog>
               </v-col>
             </v-row>
@@ -76,8 +77,7 @@
         :sales="sales"
         :orderStatuses="orderStatuses"
         @loadOrders="loadOrders"
-        @refreshUserOrders="refreshUserOrders"
-      >
+        @refreshUserOrders="refreshUserOrders">
       </v-order-add-form>
     </v-dialog>
   </div>
@@ -122,7 +122,6 @@ export default {
     });
 
     const refreshUserOrders = () => {
-      console.log("refresh orders");
       store.dispatch("user/GET_USER_ORDERS_FROM_API", {
         id: selectedUser.value.id,
       });

@@ -41,9 +41,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указано название статуса заявки!"))
     }
 
-    const requestStatus = await RequestStatus.findOne({ where: { name } })
+    const requestStatus = await RequestStatus.findOne({ where: { id } })
 
-    if (requestStatus) {
+    if (name != requestStatus.name && await RequestStatus.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данный статус уже существует!"))
     }
 

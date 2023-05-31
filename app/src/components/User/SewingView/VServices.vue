@@ -2,7 +2,11 @@
   <div class="services">
     <div class="title services__title">{{ category }} изделий</div>
     <div class="services__list">
-      <div v-for="service in services" v-show="service.name.startsWith(category)" :key="service.id" class="services__item">
+      <div
+        v-for="service in services"
+        v-show="service.name.startsWith(category)"
+        :key="service.id"
+        class="services__item">
         <div class="services__item-body">
           <div class="services__item-img">
             <img :src="'http://localhost:5000/' + service.image" />
@@ -34,7 +38,7 @@ export default {
     let services = computed(() => store.state.service.services.rows);
 
     return {
-        services,
+      services,
     };
   },
 };

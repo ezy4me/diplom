@@ -19,11 +19,11 @@ function deleteOne(req, res, next) {
 
 async function create(req, res, next) {
     const { email, fio, phone } = req.body
-    
+
     if (!email) {
         return next(ApiError.NotFound("Некорректно указана почта пользователя!"))
     }
-    if (!fio || fio.split(' '.length < 2)) {
+    if (!fio || fio.split(' ').length < 2) {
         return next(ApiError.NotFound("Некорректно указано Ф.И.О. пользователя!"))
     }
     if (!phone) {
@@ -55,24 +55,22 @@ async function update(req, res, next) {
     if (!email) {
         return next(ApiError.NotFound("Некорректно указана почта пользователя!"))
     }
-    if (!fio || fio.split(' '.length < 2)) {
+    if (!fio || fio.split(' ').length < 2) {
         return next(ApiError.NotFound("Некорректно указано Ф.И.О. пользователя!"))
     }
     if (!phone) {
         return next(ApiError.NotFound("Некорректно указан номер телефона пользователя!"))
     }
 
-    const userEmail = await User.findOne({ where: { email } })
-    const userFio = await User.findOne({ where: { fio } })
-    const userPhone = await User.findOne({ where: { phone } })
+    const user = await User.findOne({ where: { id } })
 
-    if (userEmail) {
+    if (email != user.email && await User.findOne({ where: { email } })) {
         return next(ApiError.NotFound("Данная почта уже существует!"))
     }
-    if (userFio) {
+    if (fio != user.fio && await User.findOne({ where: { fio } })) {
         return next(ApiError.NotFound("Пользователь под данными именем уже существует!"))
     }
-    if (userPhone) {
+    if (phone != user.phone && await User.findOne({ where: { phone } })) {
         return next(ApiError.NotFound("Данный номер телефона уже существует!"))
     }
 

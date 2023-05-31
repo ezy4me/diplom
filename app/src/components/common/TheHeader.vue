@@ -22,19 +22,18 @@
           </ul>
         </nav>
         <div class="header__actions">
-          <button class="request-btn" @click="dialog = true">
+          <button class="request-btn" @click="dialog = true" role="alertdialog">
             Заказать звонок
           </button>
           <v-dialog v-model="dialog" width="600">
-            <request-form @closeDialog="closeDialog"> </request-form>
+            <request-form @closeDialog="closeDialog"/>
           </v-dialog>
-          <a v-show="!role" @click="isOpen = true" class="link" href="#"
-            >Войти</a
-          >
-          <router-link v-if="role == 'USER'" to="/account"
-            >Личный кабинет</router-link
-          >
-          <!-- <router-link  v-else-if="role == 'ADMIN'" to="/admin">ROOT</router-link> -->
+          <a v-show="!role" @click="isOpen = true" class="link" href="#">
+            Войти
+          </a>
+          <router-link v-if="role == 'USER'" to="/account">
+            Личный кабинет
+          </router-link>
         </div>
       </div>
     </div>

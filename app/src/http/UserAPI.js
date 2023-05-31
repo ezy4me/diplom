@@ -21,7 +21,6 @@ export const UserAPI = {
         const url = process.env.VUE_APP_USER_API_URL
 
         const data = { id, email, fio, phone }
-        console.log(data);
 
         return DefaultAPIInstance.put(url, { ...data })
     },

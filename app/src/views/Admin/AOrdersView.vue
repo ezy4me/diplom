@@ -20,35 +20,38 @@
               :payments="payments"
               :sales="sales"
               :orderStatuses="orderStatuses"
-              @loadOrders="loadOrders"
-            >
+              @loadOrders="loadOrders">
             </v-order-add-form>
           </v-dialog>
         </v-row>
-        <v-order-table :orders="orders" @selectOrder="selectOrder"> </v-order-table>
+        <v-order-table :orders="orders" @selectOrder="selectOrder">
+        </v-order-table>
       </v-col>
       <transition>
         <v-col v-if="isSelected" cols="3" class="border rounded">
           <div class="d-flex flex-column">
-            <div class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
-              <v-icon @click="closeInfo" icon="mdi-close" class="text-h6"></v-icon>
+            <div
+              class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
+              <v-icon
+                @click="closeInfo"
+                icon="mdi-close"
+                class="text-h6"></v-icon>
             </div>
-            <v-row class="my-3 d-flex flex-column align-center justify-content-center">
+            <v-row
+              class="my-3 d-flex flex-column align-center justify-content-center">
               <div class="text-h4 font-weight-light">Изделия</div>
               <v-card
                 width="400"
                 class="mt-1"
                 v-for="product in orderProducts"
-                :key="product.id"
-              >
+                :key="product.id">
                 <v-row>
                   <v-col cols="4">
                     <v-img
                       height="100"
                       width="100"
                       cover
-                      :src="'http://localhost:5000/' + product.image"
-                    ></v-img>
+                      :src="'http://localhost:5000/' + product.image"></v-img>
                   </v-col>
                   <v-col class="d-flex align-center">
                     <div class="text-body-1 mx-3">{{ product.name }}</div>
@@ -64,8 +67,7 @@
               :payments="payments"
               :sales="sales"
               :orderStatuses="orderStatuses"
-              @loadOrders="loadOrders"
-            >
+              @loadOrders="loadOrders">
             </v-order-edit-form>
             <v-btn @click="deleteOrder" color="red" class="my-3">Удалить</v-btn>
             <input type="order" class="w-100" />
@@ -98,7 +100,9 @@ export default {
     const orderStatuses = computed(() => store.state.orderStatus.orderStatuses);
     const users = computed(() => store.state.user.users);
     const products = computed(() => store.state.product.products);
-    const orderProducts = computed(() => store.state.order.order.map((op) => op.product));
+    const orderProducts = computed(() =>
+      store.state.order.order.map((op) => op.product)
+    );
 
     const selectedOrder = ref();
 
@@ -112,9 +116,11 @@ export default {
     });
 
     const selectOrder = async (order) => {
-      await store.dispatch("order/GET_ORDER_FROM_API", { id: order.id }).then(() => {
-        selectedOrder.value = order;
-      });
+      await store
+        .dispatch("order/GET_ORDER_FROM_API", { id: order.id })
+        .then(() => {
+          selectedOrder.value = order;
+        });
 
       if (!isSelected.value) {
         isSelected.value = !isSelected.value;

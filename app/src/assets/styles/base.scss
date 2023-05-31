@@ -3,6 +3,16 @@
 body {
     min-height: 100vh;
 }
+
+.swal2-container {
+    z-index: 8888 !important;
+}
+
+.swal2-popup {
+    z-index: 6666 !important;
+}
+
+
 .container {
     padding: 0 3rem;
     max-width: 1200px;

@@ -1,5 +1,9 @@
 <template>
-  <Doughnut v-if="loaded" id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <Doughnut
+    v-if="loaded"
+    id="my-chart-id"
+    :options="chartOptions"
+    :data="chartData" />
 </template>
 
 <script>
@@ -35,7 +39,13 @@ export default {
       datasets: [
         {
           label: "Кол-во",
-          backgroundColor: ["#1240AB", "#2A4480", "#06266F", "#4671D5", "#6C8CD5"],
+          backgroundColor: [
+            "#1240AB",
+            "#2A4480",
+            "#06266F",
+            "#4671D5",
+            "#6C8CD5",
+          ],
           data: [],
         },
       ],

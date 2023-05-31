@@ -11,15 +11,21 @@
         </div>
         <div>
           <v-icon icon="mdi-receipt"></v-icon>
-          <div class="text">Разрабатываем лекала и <span>шьем образец</span></div>
+          <div class="text">
+            Разрабатываем лекала и <span>шьем образец</span>
+          </div>
         </div>
         <div>
           <v-icon icon="mdi-pencil"></v-icon>
-          <div class="text">Шьем партию, маркируем и <span>наносим принт</span></div>
+          <div class="text">
+            Шьем партию, маркируем и <span>наносим принт</span>
+          </div>
         </div>
         <div>
           <v-icon icon="mdi-truck-delivery"></v-icon>
-          <div class="text">Упаковываем одежду и <span>отгружаем партию</span></div>
+          <div class="text">
+            Упаковываем одежду и <span>отгружаем партию</span>
+          </div>
         </div>
       </div>
     </div>
@@ -27,9 +33,8 @@
 </template>
 
 <script>
-export default{
+export default {
   name: "WorkingScheme",
-
   setup() {
     return {};
   },

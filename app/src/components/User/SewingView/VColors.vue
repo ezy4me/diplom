@@ -3,7 +3,9 @@
     <div class="title colors__title">Обширный ассортимент цветов</div>
     <div class="colors__preview">
       <div v-for="color in colors" :key="color.id" class="color">
-        <div class="color__hex" :style="{ 'background-color': color.hex }"></div>
+        <div
+          class="color__hex"
+          :style="{ 'background-color': color.hex }"></div>
         <div class="color__name">{{ color.name }}</div>
       </div>
     </div>
@@ -50,7 +52,7 @@ export default {
     border-radius: 100%;
   }
 
-  &__name{
+  &__name {
     font-size: 16px;
     margin: 1rem 0;
   }

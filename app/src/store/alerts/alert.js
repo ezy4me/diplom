@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2/dist/sweetalert2';
 
 export const Alert = {
-    seccesAlert(title, text) {
+    successAlert(title, text) {
         if (!title) {
             title = 'Действие'
         }
@@ -23,6 +23,7 @@ export const Alert = {
         if (!text) {
             text = 'Ошибка'
         }
+
         return Swal.fire({
             title: `${title}`,
             text: `${text}`,

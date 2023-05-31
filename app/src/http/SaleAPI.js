@@ -26,7 +26,6 @@ export const SaleAPI = {
     updateSale(id, name) {
         const url = process.env.VUE_APP_SALE_API_URL
         const data = { id, name }
-        console.log(data);
 
         return DefaultAPIInstance.put(url, { ...data })
     }

@@ -1,4 +1,5 @@
 import { ColorAPI } from '../../http/ColorAPI';
+import { Alert } from '../alerts/alert';
 
 const state = {
     colors: [],
@@ -15,38 +16,37 @@ const actions = {
                 commit('setColors', res.data);
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Ошибка", error.response.data.message);
             })
     },
 
-    async ADD_COLOR(_,{name, hex}) {    
-        console.log({name, hex});
-            
+    async ADD_COLOR(_, { name, hex }) {
         return await ColorAPI.create(name, hex)
+            .then(() => {
+                return Alert.successAlert("Добавление цвета")
+            })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Добавление цвета", error.response.data.message);
             })
     },
 
-    async DELETE_COLOR(_,{id}) {                
+    async DELETE_COLOR(_, { id }) {
         return await ColorAPI.deleteColor(id)
+            .then(() => {
+                return Alert.successAlert("Удаление цвета")
+            })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Удаление цвета", error.response.data.message);
             })
     },
 
-    async UPDATE_COLOR(_,{id, name, hex}) {                
+    async UPDATE_COLOR(_, { id, name, hex }) {
         return await ColorAPI.updateColor(id, name, hex)
-            .then((res) => {
-                console.log(res.data);
-                // commit('setColors', res.data);
+            .then(() => {
+                return Alert.successAlert("Изменение цвета")
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Изменение цвета", error.response.data.message);
             })
     },
 }

@@ -1,7 +1,6 @@
 <template>
   <footer>
     <div class="footer">
-      <!-- <v-map /> -->
       <div class="footer__inner">
         <div class="footer__title">Наши контакты</div>
         <div class="footer__contacts">
@@ -20,7 +19,7 @@
 </template>
 
 <script>
-export default{
+export default {
   setup() {
     const tabs = [
       { id: 1, name: "Главная", path: "/" },
@@ -32,9 +31,6 @@ export default{
     return {
       tabs,
     };
-  },
-  components: {
-    // VMap,
   },
 };
 </script>

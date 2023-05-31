@@ -19,7 +19,7 @@ function deleteOne(req, res, next) {
 
 async function create(req, res, next) {
     const { name } = req.body
-    
+
     if (!name) {
         return next(ApiError.NotFound("Некорректно указано название размера!"))
     }
@@ -42,9 +42,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указано название размера!"))
     }
 
-    const size = await Size.findOne({ where: { name } })
+    const size = await Size.findOne({ where: { id } })
 
-    if (size) {
+    if (name != size.name && await Size.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данный размер уже существует!"))
     }
 

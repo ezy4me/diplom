@@ -6,32 +6,27 @@
         :items="products.rows.map((p) => p.name)"
         :error-messages="v$.products.$errors.map((e) => e.$message)"
         label="Изделие"
-        multiple
-      ></v-select>
+        multiple></v-select>
       <v-select
         v-model="state.user"
         :items="users.rows.map((u) => u.fio)"
         :error-messages="v$.user.$errors.map((e) => e.$message)"
-        label="Пользователь"
-      ></v-select>
+        label="Пользователь"></v-select>
       <v-select
         v-model="state.payment"
         :items="payments.rows.map((p) => p.type)"
         :error-messages="v$.payment.$errors.map((e) => e.$message)"
-        label="Статус оплаты"
-      ></v-select>
+        label="Статус оплаты"></v-select>
       <v-select
         v-model="state.sale"
         :items="sales.rows.map((s) => s.name)"
         :error-messages="v$.sale.$errors.map((e) => e.$message)"
-        label="Скидка"
-      ></v-select>
+        label="Скидка"></v-select>
       <v-select
         v-model="state.order_status"
         :items="orderStatuses.rows.map((os) => os.name)"
         :error-messages="v$.order_status.$errors.map((e) => e.$message)"
-        label="Статус заказа"
-      ></v-select>
+        label="Статус заказа"></v-select>
       <v-btn type="submit" color="blue" block class="border">Изменить</v-btn>
     </v-form>
   </v-sheet>
@@ -52,52 +47,48 @@ export default {
     },
     products: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => [],
     },
     users: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => [],
     },
     payments: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => [],
     },
     sales: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => [],
     },
     orderStatuses: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => [],
     },
     orderProducts: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => [],
     },
   },
   setup(props, { emit }) {
     const store = useStore();
 
-    const { selectedOrder, products, users, payments, sales, orderStatuses, orderProducts } = toRefs(props);
-    
+    const {
+      selectedOrder,
+      products,
+      users,
+      payments,
+      sales,
+      orderStatuses,
+      orderProducts,
+    } = toRefs(props);
+
     onUpdated(() => {
       state.user = selectedOrder.value.user.fio;
-        state.payment = selectedOrder.value.payment.type;
-        state.sale = selectedOrder.value.sale.name;
-        state.order_status = selectedOrder.value.order_status.name;
-        state.products = orderProducts.value.map((p) => p.name)
+      state.payment = selectedOrder.value.payment.type;
+      state.sale = selectedOrder.value.sale.name;
+      state.order_status = selectedOrder.value.order_status.name;
+      state.products = orderProducts.value.map((p) => p.name);
     });
 
     const initialState = {
@@ -134,7 +125,6 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }
@@ -156,13 +146,14 @@ export default {
           .dispatch("order/UPDATE_ORDER", {
             id: selectedOrder.value.id,
             userId: users.value.rows.filter((u) => u.fio === state.user)[0].id,
-            paymentId: payments.value.rows.filter((p) => p.type === state.payment)[0].id,
+            paymentId: payments.value.rows.filter(
+              (p) => p.type === state.payment
+            )[0].id,
             saleId: sales.value.rows.filter((s) => s.name === state.sale)[0].id,
             orderStatusId: orderStatuses.value.rows.filter(
               (os) => os.name === state.order_status
             )[0].id,
             products: productsID,
-
           })
           .then(() => {
             emit("loadOrders");
@@ -179,5 +170,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

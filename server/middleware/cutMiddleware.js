@@ -19,7 +19,7 @@ function deleteOne(req, res, next) {
 
 async function create(req, res, next) {
     const { name } = req.body
-    
+
     if (!name) {
         return next(ApiError.NotFound("Некорректно указано название кроя!"))
     }
@@ -42,9 +42,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указано название кроя!"))
     }
 
-    const cut = await Cut.findOne({ where: { name } })
+    const cut = await Cut.findOne({ where: { id } })
 
-    if (cut) {
+    if (name != cut.name && await Cut.findOne({ where: { name } })) {
         return next(ApiError.NotFound("Данный вид кроя уже существует!"))
     }
 

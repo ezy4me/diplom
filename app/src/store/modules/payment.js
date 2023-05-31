@@ -1,5 +1,5 @@
 import { PaymentAPI } from '../../http/PaymentAPI';
-
+import { Alert } from '../alerts/alert';
 const state = {
     payments: [],
 }
@@ -12,12 +12,10 @@ const actions = {
     async GET_PAYMENTS_FROM_API({ commit }) {
         return await PaymentAPI.getAllPayments()
             .then((res) => {
-                console.log(res.data);
                 commit('setPayments', res.data);
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Ошибка", error.response.data.message);
             })
     }
 }

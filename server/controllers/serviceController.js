@@ -72,7 +72,7 @@ class ServiceController {
         const values = { name, description, price };
         const service = await Service.update(values, condition, options);
         return res.json(service);
-      } 
+      }
       else {
         const image = req.files.image;
         let fileName = uuid.v4() + ".jpg";

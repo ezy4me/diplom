@@ -2,13 +2,15 @@
   <v-container fluid>
     <v-row>
       <v-col class="border rounded mr-3">
-        <v-row class=" align-center">
+        <v-row class="align-center">
           <v-col cols="10">
             <h3 class="text-h4 font-weight-light">Пользователи</h3>
           </v-col>
           <v-col>
             <v-sheet class="d-flex align-center justify-center">
-                <v-btn @click="dialog = true" color="green" class="my-3 w-100">Добавить</v-btn>
+              <v-btn @click="dialog = true" color="green" class="my-3 w-100"
+                >Добавить</v-btn
+              >
             </v-sheet>
           </v-col>
           <v-dialog v-model="dialog" width="600">
@@ -20,8 +22,12 @@
       <transition>
         <v-col v-if="isSelected" cols="4" class="border rounded">
           <div class="d-flex flex-column">
-            <div class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
-              <v-icon @click="closeInfo" icon="mdi-close" class="text-h6"></v-icon>
+            <div
+              class="d-flex align-center justify-end my-3 pa-2 bg-primary rounded">
+              <v-icon
+                @click="closeInfo"
+                icon="mdi-close"
+                class="text-h6"></v-icon>
             </div>
             <div v-if="selectedUser" class="text-h6">
               <div class="d-flex flex-column">
@@ -36,8 +42,7 @@
             </div>
             <v-user-edit-form
               @loadUsers="loadUsers"
-              :selectedUser="selectedUser"
-            ></v-user-edit-form>
+              :selectedUser="selectedUser"></v-user-edit-form>
             <v-btn color="red" @click="deleteUser" class="my-3">Удалить</v-btn>
           </div>
         </v-col>
@@ -78,7 +83,7 @@ export default {
     };
 
     const loadUsers = () => {
-      store.dispatch("user/GET_USERS_FROM_API")
+      store.dispatch("user/GET_USERS_FROM_API");
     };
 
     const closeInfo = () => {

@@ -1,5 +1,5 @@
 import { ServiceAPI } from '@/http/ServiceAPI';
-
+import { Alert } from '../alerts/alert';
 const state = {
     services: [],
 }
@@ -9,48 +9,44 @@ const getters = {
 }
 
 const actions = {
-    async GET_SERVICES_FROM_API({ commit}) {
+    async GET_SERVICES_FROM_API({ commit }) {
         return await ServiceAPI.getAllServices()
-            .then((res ) => {
-                console.log(res.data);
+            .then((res) => {
                 commit('setServices', res.data);
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Ошибка", error.response.data.message);
             })
     },
 
-    async ADD_SERVICE(_,{ name, price, description, image }) {
+    async ADD_SERVICE(_, { name, price, description, image }) {
         return await ServiceAPI.create(name, price, description, image)
-            .then((res ) => {
-                console.log(res.data);
+            .then(() => {
+                return Alert.successAlert("Добавление услуги");
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Добавление услуги", error.response.data.message);
             })
     },
 
-    async UPDATE_SERVICE(_,{id, name, price, description, image }) {
+    async UPDATE_SERVICE(_, { id, name, price, description, image }) {
         return await ServiceAPI.updateService(id, name, price, description, image)
-            .then((res ) => {
-                console.log(res.data);
+            .then(() => {
+                return Alert.successAlert("Изменение услуги");
+
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Изменение услуги", error.response.data.message);
             })
     },
 
-    async DELETE_SERVICE(_,{ id }) {
+    async DELETE_SERVICE(_, { id }) {
         return await ServiceAPI.deleteService(id)
-            .then((res) => {
-                console.log(res.data);
+            .then(() => {
+                return Alert.successAlert("Удаление услуги");
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Удаление услуги", error.response.data.message);
             })
     },
 }

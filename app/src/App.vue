@@ -2,7 +2,7 @@
   <v-app>
     <v-main v-if="role === 'ADMIN'">
       <v-side-bar />
-      <router-view /> 
+      <router-view />
     </v-main>
     <v-main v-else>
       <the-header-vue />
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { computed, defineComponent} from "vue";
+import { computed, defineComponent } from "vue";
 import TheHeaderVue from "./components/common/TheHeader.vue";
 import TheFooterVue from "./components/common/TheFooter.vue";
 import VFaq from "./components/User/AboutView/VFaq.vue";
@@ -30,7 +30,7 @@ export default defineComponent({
     VSideBar,
   },
   setup() {
-    const store = useStore()
+    const store = useStore();
     const role = computed(() => store.state.auth.credentials.userRole);
     return {
       role,

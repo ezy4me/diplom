@@ -4,31 +4,24 @@
       <v-text-field
         :error-messages="v$.name.$errors.map((e) => e.$message)"
         v-model="state.name"
-        label="Имя"
-      ></v-text-field>
+        label="Имя"></v-text-field>
       <v-text-field
         v-model="state.email"
         :error-messages="v$.email.$errors.map((e) => e.$message)"
-        label="Почта"
-      ></v-text-field>
+        label="Почта"></v-text-field>
       <v-text-field
         v-model="state.phone"
         maxlength="11"
         :error-messages="v$.phone.$errors.map((e) => e.$message)"
-        label="Телефон"
-      ></v-text-field>
-      <v-textarea
-        v-model="state.description"
-        label="Комментарий"
-      ></v-textarea>
+        label="Телефон"></v-text-field>
+      <v-textarea v-model="state.description" label="Комментарий"></v-textarea>
       <v-select
         label="Статус"
         :items="requestStatuses.rows.map((s) => s.name)"
         v-model="state.requestStatus"
         :error-messages="v$.requestStatus.$errors.map((e) => e.$message)"
-        variant="solo"
-      ></v-select>
-     
+        variant="solo"></v-select>
+
       <v-btn type="submit" color="blue" block class="border">Изменить</v-btn>
     </v-form>
   </v-sheet>
@@ -49,9 +42,7 @@ export default {
     },
     requestStatuses: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => [],
     },
   },
   setup(props, { emit }) {
@@ -60,11 +51,11 @@ export default {
     const { selectedRequest, requestStatuses } = toRefs(props);
 
     onUpdated(() => {
-      state.name = selectedRequest.value.name
-      state.email = selectedRequest.value.email
-      state.phone = selectedRequest.value.phone
-      state.description = selectedRequest.value.description
-      state.requestStatus = selectedRequest.value.requestStatus.name
+      state.name = selectedRequest.value.name;
+      state.email = selectedRequest.value.email;
+      state.phone = selectedRequest.value.phone;
+      state.description = selectedRequest.value.description;
+      state.requestStatus = selectedRequest.value.requestStatus.name;
     });
 
     const initialState = {
@@ -100,14 +91,12 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }
     }
 
     const updateRequest = async () => {
-      // console.log(requestColors.value.filter((m) => m.name == state.color)[0].id);
       const result = await v$.value.$validate();
       if (result) {
         store
@@ -117,7 +106,9 @@ export default {
             email: state.email,
             phone: state.phone,
             description: state.description,
-            requestStatus: requestStatuses.value.rows.filter((s) => s.name == state.requestStatus)[0].id,
+            requestStatus: requestStatuses.value.rows.filter(
+              (s) => s.name == state.requestStatus
+            )[0].id,
           })
           .then(() => {
             emit("loadRequests");
@@ -134,5 +125,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

@@ -8,8 +8,7 @@
               class="align-end border"
               :src="'http://localhost:5000/' + order.product.image"
               width="400"
-              cover
-            >
+              cover>
             </v-img>
           </v-col>
           <v-col>
@@ -33,8 +32,7 @@
             <div
               v-for="material in order.product.material"
               :key="material.id"
-              class="text-body-1 my-3"
-            >
+              class="text-body-1 my-3">
               <span class="font-weight-bold">Материал:</span>
               {{ material.name }}
               <div
@@ -43,14 +41,12 @@
                   'background-color': material.color.hex,
                   width: '50px',
                   height: '50px',
-                }"
-              ></div>
+                }"></div>
             </div>
             <div
               v-for="furniture in order.product.furniture"
               :key="furniture.id"
-              class="text-body-1 my-3"
-            >
+              class="text-body-1 my-3">
               <span class="font-weight-bold">Фурнитура:</span>
               {{ furniture.name }}
             </div>
@@ -73,9 +69,7 @@ export default {
   props: {
     orderProducts: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => []
     },
   },
   setup(props, { emit }) {
@@ -89,5 +83,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

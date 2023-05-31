@@ -20,7 +20,7 @@ function deleteOne(req, res, next) {
 async function create(req, res, next) {
     const { name, email, phone, requestType } = req.body
     
-    if (!name) {
+    if (!name || name.split(' ').length < 2) {
         return next(ApiError.NotFound("Некорректно указано имя пользователя!"))
     }
     if (!email) {
@@ -41,7 +41,7 @@ async function update(req, res, next) {
     if (!id) {
         return next(ApiError.NotFound("Некорректно указан номер заявки!"))
     }
-    if (!name) {
+    if (!name || name.split(' ').length < 2) {
         return next(ApiError.NotFound("Некорректно указано имя пользователя!"))
     }
     if (!email) {

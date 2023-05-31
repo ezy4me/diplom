@@ -41,9 +41,9 @@ async function update(req, res, next) {
         return next(ApiError.NotFound("Некорректно указано название статуса оплаты!"))
     }
 
-    const payment = await Payment.findOne({ where: { type } })
+    const payment = await Payment.findOne({ where: { id } })
 
-    if (payment) {
+    if (type != payment.type && await Payment.findOne({ where: { type } })) {
         return next(ApiError.NotFound("Данный статус уже существует!"))
     }
 

@@ -19,9 +19,7 @@ import VServices from "../../components/User/SewingView/VServices.vue";
 
 export default {
   name: "PrintView",
-
   components: { VServices },
-
   setup() {
     const store = useStore();
 

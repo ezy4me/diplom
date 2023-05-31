@@ -2,39 +2,32 @@
   <v-sheet class="my-3 w-100">
     <v-img
       height="300"
-      :src="'http://localhost:5000/' + selectedFurniture.image"
-    ></v-img>
+      :src="'http://localhost:5000/' + selectedFurniture.image"></v-img>
     <v-form @submit.prevent="updateFurniture">
       <v-text-field
         :error-messages="v$.name.$errors.map((e) => e.$message)"
         v-model="state.name"
-        label="Название"
-      ></v-text-field>
+        label="Название"></v-text-field>
       <v-text-field
         v-model="state.price"
         :error-messages="v$.price.$errors.map((e) => e.$message)"
-        label="Стоимость"
-      ></v-text-field>
+        label="Стоимость"></v-text-field>
       <v-text-field
         v-model="state.count"
         :error-messages="v$.count.$errors.map((e) => e.$message)"
-        label="Кол-во"
-      ></v-text-field>
+        label="Кол-во"></v-text-field>
       <v-select
         label="Цвет"
         :items="furnitureColors.map((c) => c.name)"
         v-model="state.color"
         :error-messages="v$.color.$errors.map((e) => e.$message)"
-        variant="solo"
-      ></v-select>
+        variant="solo"></v-select>
       <v-file-input
         label="Изображение"
         type="file"
         required
         v-model="state.image"
-        
-        variant="solo"
-      ></v-file-input>
+        variant="solo"></v-file-input>
       <v-btn type="submit" color="blue" block class="border">Изменить</v-btn>
     </v-form>
   </v-sheet>
@@ -55,9 +48,7 @@ export default {
     },
     furnitureColors: {
       type: Array,
-      default: () => {
-        return [];
-      },
+      default: () => [],
     },
   },
   setup(props, { emit }) {
@@ -104,7 +95,6 @@ export default {
 
     function clear() {
       v$.value.$reset();
-
       for (const [key, value] of Object.entries(initialState)) {
         state[key] = value;
       }
@@ -119,7 +109,9 @@ export default {
             name: state.name,
             price: state.price,
             count: state.count,
-            colorId: furnitureColors.value.filter((m) => m.name == state.color)[0].id,
+            colorId: furnitureColors.value.filter(
+              (m) => m.name == state.color
+            )[0].id,
             image: state.image[0],
           })
           .then(() => {
@@ -137,5 +129,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

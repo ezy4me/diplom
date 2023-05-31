@@ -1,5 +1,5 @@
 import { OrderStatusAPI } from '../../http/OrderStatusAPI';
-
+import { Alert } from '../alerts/alert';
 const state = {
     orderStatuses: [],
 }
@@ -12,12 +12,10 @@ const actions = {
     async GET_ORDERSTATUSES_FROM_API({ commit }) {
         return await OrderStatusAPI.getAllOrderStatuses()
             .then((res) => {
-                console.log(res.data);
                 commit('setOrderStatuses', res.data);
             })
             .catch((error) => {
-                console.log(error);
-                return error;
+                return Alert.errorAlert("Ошибка", error.response.data.message);
             })
     }
 }
