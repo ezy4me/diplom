@@ -1,0 +1,75 @@
+@import './variables.scss';
+
+// * {
+//     font-family: 'Oswald', sans-serif;
+// }
+
+body {
+    min-height: 100vh;
+}
+.container {
+    padding: 0 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    @include font-size(16, normal, 1.2);
+
+}   
+
+a.router-link-exact-active {
+    color: $secondary;
+    font-weight: bold;
+}
+
+.title {
+    @include font-size(36, normal, 1.2);
+    font-weight: 500;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+
+    &::after {
+        content: "";    
+        position: absolute;
+        width: 20%;
+        min-width: 60px;
+        height: 4px;
+        border-radius: 4rem;
+        background: $primary;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%)
+    }
+}
+
+
+.desc {
+    @include font-size(22, normal, 1.2);
+}
+
+.text{
+    @include font-size(18, normal, 1.2);
+}
+
+.btn {
+    padding: 0.5rem 2rem;
+    border: 1px solid $border-color;
+    background: $primary;
+    border-radius: 1rem;
+    width: fit-content;
+    color: whitesmoke;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover{
+        transform: scale(1.02);
+        transition: all 0.5s ease;
+    }
+}

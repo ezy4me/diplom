@@ -1,0 +1,114 @@
+$primary: #0099ff;
+$secondary: #3366ff;
+$hover-color: #99ccff;
+$light-secondary: #BBDEFB;
+$border-color: #ececec;
+$dark: #292929;
+
+@mixin hover {
+    cursor: pointer;
+    background: $hover-color;
+}
+
+@mixin border-direction($direction, $width, $style, $color) {
+    border-#{$direction}: $width $style $color;
+}
+
+@mixin border-all($width, $style, $color) {
+    border: $width $style $color;
+}
+
+@mixin border-3d{
+    border-top: 4px solid #ececec;
+    border-left: 4px solid #ececec;
+    border-bottom: 4px solid #a8a8a8;
+    border-right: 4px solid #a8a8a8;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+@mixin flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-center-column {
+    @include flex-center;
+    flex-direction: column;
+}
+
+@mixin flex-center-vert {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-center-horiz {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin font-size($font-size, $line-height: normal, $letter-spacing: normal) {
+    font-size: $font-size * 1px;
+
+    @if $line-height==normal {
+        line-height: normal;
+    } @else {
+        line-height: $line-height / $font-size;
+    }
+
+    @if $letter-spacing==normal {
+        letter-spacing: normal;
+    } @else {
+        letter-spacing: #{$letter-spacing / $font-size}em;
+    }
+
+     font-family: 'Oswald', sans-serif;
+}
+
+@mixin cover-background($image) {
+    background-image: url(#{$image});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+@mixin skew-background-transition($initial, $hover, $inverted: false) {
+    background: linear-gradient(90deg, $hover 0%, $hover 50%, $initial 50%, $initial 100%);
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
+
+    background-position: right bottom;
+    @if $inverted {
+        background-position: left bottom;
+    }
+    transition: background-position 0.25s ease-out;
+
+    &:hover {
+        background-position: left bottom;
+        @if $inverted {
+            background-position: right bottom;
+        }
+    }
+}

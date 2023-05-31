@@ -1,0 +1,40 @@
+@import "./variables.scss";
+
+footer {
+    bottom: 0;
+    margin-top: 4rem;
+}
+.footer {
+    width: 100%;
+    @include flex-center;
+    color: white;
+    background: $dark;
+
+    &__inner {
+        padding: 9rem;
+    }
+
+    &__title {
+        @include font-size(32, normal, 1.2);
+    }
+
+    &__contacts {
+        @include flex-column;
+        @include font-size(20, normal, 1.2);
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    &__socials {
+        display: flex;
+        gap: 1rem;
+
+        i {
+            @include font-size(40, normal, 1.2);
+            cursor: pointer;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

@@ -1,0 +1,141 @@
+@import "./variables.scss";
+
+header {
+    width: 100%;
+    background: white;
+}
+
+.header {
+    @include flex-column;
+
+    &__container {
+        @include border-direction("bottom", 1px, solid, $border-color);
+    }
+
+    &__navbar {
+        @include flex-space-between;
+        height: 4rem;
+        padding: 0 3rem;
+        position: fixed;
+        background: white;
+        width: 100%;
+        z-index: 99;
+        @include border-direction("bottom", 1px, solid, $border-color);
+    }
+
+    &__actions {
+        color: white;
+        width: 155px;
+        gap: 1rem;
+        @include flex-end;
+
+        a {
+            @include font-size(20, normal, 1.2);
+            
+            &:hover {
+                color: $secondary;
+            }
+        }
+
+        button {
+            @include border-all(1px, solid, $secondary);
+            padding: 0.5rem;
+            color: black;
+            @include font-size(20, normal, 1.2);
+            background: rgba($color: #FFF, $alpha: 1);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            text-transform: uppercase;
+            &:hover {
+                transform: scale(1.02);
+                transition: all 0.1s ease;
+                background: $secondary;
+                color: white;
+            }
+        }
+    }
+
+    &__info {
+        @include flex-space-between;
+        gap: 4rem;
+
+        i {
+            color: $border-color;
+            @include border-all(2px, dashed, $border-color);
+            border-radius: 1rem;
+            background: $dark;
+            @include font-size(120, normal, 1.2);
+        }
+
+        div {
+            @include flex-center-column;
+        }
+
+        div.desc {
+            margin-top: 0.5rem;
+
+            span {
+                display: contents;
+                color: $secondary;
+            }
+        }
+    }
+
+    &__img {
+        height: 100vh;
+        @include cover-background("../images/main-bg.jpg");
+        @include flex-center-column;
+        gap: 2rem;
+        color: white;
+    }
+
+    &__title {
+        @include font-size(64, normal, 1.2);
+    }
+
+    &__subtitle {
+        @include font-size(32, normal, 1.2);
+    }
+}
+.navbar {
+    height: 100%;
+    @include flex-center;
+    &__list {
+        @include flex-center;
+        list-style: none;
+        gap: 1rem;
+        height: 100%;
+    }
+
+    &__item {
+        @include flex-center;
+        position: relative;
+        height: 100%;
+        padding: 0 1rem;
+        text-transform: uppercase;
+
+        &:hover {
+            @include hover;
+        }
+    }
+
+    &__item a {
+        @include flex-center;
+        height: 100%;
+    }
+}
+
+.logo {
+    @include flex-center;
+    gap: 1rem;
+    &__img {
+        width: 60px;
+    }
+
+    &__title {
+        @include font-size(24, normal, 1.2);
+        text-transform: uppercase;
+        color: black;
+        text-decoration: underline;
+    }
+}
