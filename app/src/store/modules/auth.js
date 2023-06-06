@@ -19,11 +19,11 @@ const actions = {
     async ON_LOGIN({ commit }, { email, password }) {
         return AuthAPI.login(email, password)
             .then((res) => {
+                Alert.successAlert("Авторизация")
                 commit('setToken', res.data.token);
                 commit('setUserRole', res.data.user.role);
                 commit('setUser', res.data.user);
                 DefaultAPIInstance.defaults.headers['authorization'] = 'Bearer ' + res.data.token;
-                return Alert.successAlert("Авторизация")
             })
             .catch(() => {
                 return Alert.errorAlert("Авторизация")

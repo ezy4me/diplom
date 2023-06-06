@@ -3,7 +3,6 @@ const router = express.Router();
 
 const materialController = require('../controllers/materialController');
 const materialMiddleware = require('../middleware/materialMiddleware');
-const { getOne } = require('../controllers/userController');
 
 router
     .get('/:id', materialMiddleware.getOne, materialController.getOne)

@@ -173,7 +173,7 @@ class UserController {
         }
         result.push(userOrdersProducts);
       }
-      return res.json(result);
+      return res.json({result});
     } catch (e) {
       return next(ApiError.InternetServerError(e.message));
     }
@@ -209,7 +209,7 @@ class UserController {
 
       const user = await User.update(values, condition, options);
 
-      return res.json(user);
+      return res.json({user});
     } catch (e) {
       return next(ApiError.InternetServerError(e.message));
     }

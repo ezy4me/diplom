@@ -1,19 +1,33 @@
 const ApiError = require("../error/ApiError");
 const { User } = require("../models/models");
 
-function getOne(req, res, next) {
+async function getOne(req, res, next) {
     const { id } = req.params
     if (!id) {
         return next(ApiError.NotFound("Некорректно указан пользователь!"))
     }
+
+    const candidate = await User.findOne({ where: {id} })
+
+    if (!candidate) {
+        return next(ApiError.NotFound("Данного пользователя нет в системе!"))
+    }
     next()
 }
 
-function deleteOne(req, res, next) {
+async function deleteOne(req, res, next) {
     const { id } = req.params
+
     if (!id) {
         return next(ApiError.NotFound("Некорректно указан номер пользователя!"))
     }
+
+    const candidate = await User.findOne({ where: {id} })
+
+    if (!candidate) {
+        return next(ApiError.NotFound("Данного пользователя нет в системе!"))
+    }
+
     next()
 }
 
@@ -63,6 +77,10 @@ async function update(req, res, next) {
     }
 
     const user = await User.findOne({ where: { id } })
+
+    if (!user) {
+        return next(ApiError.NotFound("Данного пользователя нет в системе!"))
+    }
 
     if (email != user.email && await User.findOne({ where: { email } })) {
         return next(ApiError.NotFound("Данная почта уже существует!"))

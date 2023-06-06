@@ -108,9 +108,9 @@ const OrderProduct = sequelize.define('order_product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 })
 
-const OrderService = sequelize.define('order_service', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-})
+// const OrderService = sequelize.define('order_service', {
+//     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+// })
 
 const ProductFurniture = sequelize.define('product_furniture', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -122,72 +122,72 @@ const ProductMaterial = sequelize.define('product_material', {
 
 /// Product relations ///
 
-Category.hasMany(Product)
+Category.hasMany(Product, {onDelete: 'CASCADE'})
 Product.belongsTo(Category, { as: 'category' })
 
-Cut.hasMany(Product)
+Cut.hasMany(Product, {onDelete: 'CASCADE'})
 Product.belongsTo(Cut, { as: 'cut' })
 
-Size.hasMany(Product)
+Size.hasMany(Product, {onDelete: 'CASCADE'})
 Product.belongsTo(Size, { as: 'size' })
 
-Product.hasMany(ProductFurniture, { as: 'furnitures' })
+Product.hasMany(ProductFurniture, { as: 'furnitures' }, {onDelete: 'CASCADE'})
 ProductFurniture.belongsTo(Product)
 
-Product.hasMany(ProductMaterial, { as: 'materials' })
+Product.hasMany(ProductMaterial, { as: 'materials' }, {onDelete: 'CASCADE'})
 ProductMaterial.belongsTo(Product)
 
 /// Furniture and Material relations ///
 
-Color.hasMany(Furniture)
+Color.hasMany(Furniture, { onDelete: 'CASCADE' })
 Furniture.belongsTo(Color, { as: 'color' })
 
-Color.hasMany(Material,)
+Color.hasMany(Material, { onDelete: 'CASCADE' })
 Material.belongsTo(Color, { as: 'color' })
 
-Furniture.hasMany(ProductFurniture)
+Furniture.hasMany(ProductFurniture, {onDelete: 'CASCADE'})
 ProductFurniture.belongsTo(Furniture)
 
-Material.hasMany(ProductMaterial)
+Material.hasMany(ProductMaterial, {onDelete: 'CASCADE'})
 ProductMaterial.belongsTo(Material)
 
 /// OrderProduct relations
 
-Order.hasMany(OrderProduct)
+Order.hasMany(OrderProduct, {onDelete: 'CASCADE'})
 OrderProduct.belongsTo(Order, { as: 'order' })
 
-Product.hasMany(OrderProduct)
+Product.hasMany(OrderProduct, {onDelete: 'CASCADE'})
 OrderProduct.belongsTo(Product, { as: 'product' })
 
 /// Order relattions ///
 
-User.hasMany(Order)
+User.hasMany(Order, {onDelete: 'CASCADE'})
 Order.belongsTo(User)
 
-OrderStatus.hasMany(Order)
+OrderStatus.hasMany(Order, {onDelete: 'CASCADE'})
 Order.belongsTo(OrderStatus)
 
-Payment.hasMany(Order)
+Payment.hasMany(Order, {onDelete: 'CASCADE'})
 Order.belongsTo(Payment)
 
-Sale.hasMany(Order)
+Sale.hasMany(Order, {onDelete: 'CASCADE'})
 Order.belongsTo(Sale)
 
 /// Request relattions ///
 
-RequestStatus.hasMany(Request)
+RequestStatus.hasMany(Request, {onDelete: 'CASCADE'})
 Request.belongsTo(RequestStatus, { as: 'requestStatus' })
 
-RequestType.hasMany(Request)
+RequestType.hasMany(Request, {onDelete: 'CASCADE'})
 Request.belongsTo(RequestType, { as: 'requestType' })
 
 /// OrderService relations ///
 
-Order.hasMany(OrderService)
-OrderService.belongsTo(Order)
+// Order.hasMany(OrderService)
+// OrderService.belongsTo(Order)
 
-Service.hasMany(OrderService)
-OrderService.belongsTo(Service)
+// Service.hasMany(OrderService)
+// OrderService.belongsTo(Service)
 
 module.exports = {
     User,
@@ -209,5 +209,5 @@ module.exports = {
     Sale,
     Service,
     OrderProduct,
-    OrderService
+    // OrderService
 }

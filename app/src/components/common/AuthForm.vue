@@ -71,7 +71,8 @@ export default {
               router.push({ path: "/admin" });
             }
             if (store.state.auth.credentials.userRole === "USER") {
-              router.push({ path: "/account" });
+              // router.push({ path: "/account" });
+              location.reload()
             }
             emit("isOpen");
           });

@@ -1,5 +1,5 @@
 <template>
-  <v-sheet max-width="800">
+  <v-sheet max-width="1000">
     <div class="d-flex flex-column">
       <v-card v-for="order in orderProducts" :key="order.id" class="ma-3 pa-3">
         <v-row>

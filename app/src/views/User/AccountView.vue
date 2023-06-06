@@ -51,6 +51,7 @@
                 class="orders__item-status text-yellow text-uppercase">
                 {{ order[0].status }}
               </div>
+              <v-btn color="blue" @click="showOrderInfo(order)"> Просмотр </v-btn>
             </div>
           </div>
         </div>
@@ -59,17 +60,25 @@
         <btn @click="logout" class="btn">Выйти</btn>
       </div>
     </div>
+
+    <v-dialog v-model="dialog" width="auto">
+      <v-order-info :orderProducts="selectedOrder"></v-order-info>
+    </v-dialog>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import VOrderInfo from "@/components/Admin/VOrderInfo.vue";
 export default {
+  components: {VOrderInfo},
   setup() {
     const store = useStore();
     const router = useRouter();
+    const dialog = ref(false);
+    const selectedOrder = ref();
 
     const userOrders = computed(() => store.state.user.userOrders);
     const user = computed(() => store.state.auth.user);
@@ -107,11 +116,19 @@ export default {
       return totalPrice;
     };
 
+    const showOrderInfo = (order) =>{
+      selectedOrder.value = order
+      dialog.value = true
+    }
+
     return {
       logout,
       userOrders,
       totalPrice,
       user,
+      dialog,
+      selectedOrder,
+      showOrderInfo
     };
   },
 };
